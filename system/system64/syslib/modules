@@ -1,0 +1,9 @@
+lib: [
+    core: [
+        {"sys","json","os"}
+    ]
+    external: [
+        {"psutil","tcping"}
+    ]
+    
+]

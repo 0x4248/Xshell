@@ -49,7 +49,7 @@ class check_system:
         import os
         from os import path
         import sys
-        paths = ["system","system/boot","system/boot/boot_check","system/boot/disk_check","system/boot/sysboot","system/system64","system/system64/syscore","system/system64/sysapps","system/system64/syslib","system/logs"]
+        paths = ["system","system/system64","system/system64/syscore","system/system64/syslib"]
         log = "INFO: Exacuteing sys checkdisk\n"
         for i in paths:
             log = log + "INFO: Checking path '"+i+"\n"
