@@ -125,10 +125,5 @@ def run(command):
         if ccomand == "makefile":
             command = command.replace("makefile ","")
             x = open(command,"w")
-            z = x.read()
-            if z == "":
-                x.write("")
-            if z != "":
-                from colr import color
-                print(color("[X] ERROR file exists and contains data 409", fore="red"))
+            x.write("")
 
