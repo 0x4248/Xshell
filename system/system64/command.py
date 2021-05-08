@@ -108,7 +108,7 @@ def run(command):
         import os
         ccomand = command[:5]
         if ccomand == "mkdir":
-            command = command.replace("mkdir","")
+            command = command.replace("mkdir ","")
             try:
                 from colr import color
                 os.mkdir(command)
