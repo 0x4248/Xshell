@@ -68,7 +68,7 @@ def run(command):
         if ccommand == "rm":
             command = command.replace("rm ","")  
             try:
-                consent = input(color("[!] Are you shure you want to remove this file Y or N:", fore="yellow"))
+                consent = input(color("[!] Are you sure you want to remove this file Y or N:", fore="yellow"))
                 consent = consent.capitalize()
                 if consent == "Y":
                     os.remove(command)
@@ -88,7 +88,7 @@ def run(command):
         if ccommand == "rmdir":
             command = command.replace("rmdir ","")  
             try:
-                consent = input(color("[!] Are you shure you want to remove this directory Y or N:", fore="yellow"))
+                consent = input(color("[!] Are you sure you want to remove this directory Y or N:", fore="yellow"))
                 consent = consent.capitalize()
                 if consent == "Y":
                     x = os.getcwd()
