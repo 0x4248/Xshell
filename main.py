@@ -1,6 +1,3 @@
-from sys import flags
-
-
 class Boot:
     def Fatal_cant_boot(errorno = "Unkown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes avalible"):
         print("[X] Fatal Xshell cant boot due to an error in the system")
@@ -99,7 +96,7 @@ check_system.check_filesystem()
 
 Xshell_runing = True
 
-print("Xshell [Build_ver:"+Welcome.get_ver()+" | Running on "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
+print("Xshell [Build_ver:"+Welcome.get_ver()+" Running on "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
 print(Welcome.get_welcome_message())
 from system.system64 import command
 while Xshell_runing == True:
