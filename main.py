@@ -90,6 +90,18 @@ try:
     import curses
 except:
     Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module curses",log="none",fix="try to install the module using pip") 
+try:
+    import requests
+except:
+    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module requests",log="none",fix="try to install the module using pip") 
+try:
+    import socket
+except:
+    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module socket",log="none",fix="try to install the module using pip") 
+try:
+    import pythonping
+except:
+    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
 
 check_system.check_filesystem() 
 
@@ -101,16 +113,18 @@ print(Welcome.get_welcome_message())
 from system.system64 import command
 while Xshell_runing == True:
     cwd = os.getcwd()
-    print(color('┌──[', fore='blue')+color('Xshell', fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
+    xshell_text = "Xshell@"+socket.gethostname()
+    print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
 
     try:
         user_input = input(color('└─>', fore='blue'))
     except KeyboardInterrupt:
         print(color('\n[!] Keyboard interupt press crtl+c again to exit', fore="yellow"))
-        print(color('┌──[', fore='blue')+color('Xshell', fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
+        print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
         try:
             user_input = input(color('└─>', fore='blue'))
         except KeyboardInterrupt:
+            print("\n")
             exit()
 
     if "exit" in user_input:

@@ -83,7 +83,16 @@ makefile <file name>
 ```
 
 
+### locip
+returns the local ip address
+```
+locip
+```
 
-
+### pubip
+returns the public ip address
+```
+pubip
+```
 
 

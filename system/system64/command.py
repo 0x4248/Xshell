@@ -127,3 +127,15 @@ def run(command):
             x = open(command,"w")
             x.write("")
 
+    if "locip" in command:
+        ccomand = command[:5]
+        if ccomand == "locip":
+            from system.system64.syscore import internet_protocol
+            print(internet_protocol.get_local_ip())
+            
+
+    if "pubip" in command:
+        ccomand = command[:5]
+        if ccomand == "pubip":
+            from system.system64.syscore import internet_protocol
+            print(internet_protocol.get_public_ip())
