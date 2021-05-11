@@ -87,10 +87,6 @@ try:
 except:
     Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module colr",log="none",fix="try to install the module using pip") 
 try:
-    import curses
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module curses",log="none",fix="try to install the module using pip") 
-try:
     import requests
 except:
     Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module requests",log="none",fix="try to install the module using pip") 
