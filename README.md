@@ -6,7 +6,7 @@ Xshell is a simple python shell that runs in a local folder
 
 <img src=https://github.com/awesomelewis2007/Xshell/blob/main/document/screenshots/Screenshot_of_shell.png>
 
-## commands
+## Commands
 
 ### cd
 
@@ -53,37 +53,37 @@ $ <command>
 ```
 
 ### rm
-removes a file of the disk perminently
+Removes a file of the disk perminently
 ```
 rm <file name>
 ```
 
 ### rmdir
-removes a directory and what it conatins
+Removes a directory and what it conatins
 ```
 rmdir <dir>
 ```
 
 ### mkdir
-creates a directory
+Creates a directory
 ```
 mkdir <name>
 ```
 ### makefile
-create a file
+Create a file
 ```
 makefile <file name>
 ```
 
 
 ### locip
-returns the local ip address
+Returns the local ip address
 ```
 locip
 ```
 
 ### pubip
-returns the public ip address
+Returns the public ip address
 ```
 pubip
 ```
