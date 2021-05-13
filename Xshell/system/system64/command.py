@@ -1,3 +1,6 @@
+from system.system64.syscore.jspy.jspy import run_file
+
+
 def run(command):
     if "cd " in command:
         ccommand = command[:2]
@@ -157,3 +160,9 @@ def run(command):
             if s == "WINDOWS":
                 x = "python",command
                 os.system(x)
+    if "js " in command:
+        ccomand = command[:2]
+        if ccomand == "js":
+            command = command.replace("js ","")
+            from system.system64.syscore.jspy import jspy
+            jspy.run_file(command)
