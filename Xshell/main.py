@@ -100,8 +100,22 @@ except:
     Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
 
 check_system.check_filesystem() 
+x = platform.system()
+x = x.upper()
+f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data","w")
+f.write(x)
+f.close()
+f = open("system/temp/OS","w")
+f.write(x)
+f.close()
 
-
+x = platform.version()
+f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data","w")
+f.write(x)
+f.close()
+f = open("system/temp/OS_NAME","w")
+f.write(x)
+f.close()
 Xshell_runing = True
 
 print("Xshell [Build_ver:"+Welcome.get_ver()+" Running on "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")

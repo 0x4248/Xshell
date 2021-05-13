@@ -139,3 +139,21 @@ def run(command):
         if ccomand == "pubip":
             from system.system64.syscore import internet_protocol
             print(internet_protocol.get_public_ip())
+    if "python " in command:
+        ccomand = command[:6]
+        if ccomand == "python":
+            command = command.replace("python ","")
+            import platform
+            s = platform.system()
+            s = s.upper()
+            if s == "LINUX":
+                x = "python3",command
+                os.system(x)
+
+            if s == "MACOS":
+                x = "python3",command
+                os.system(x)
+            
+            if s == "WINDOWS":
+                x = "python",command
+                os.system(x)

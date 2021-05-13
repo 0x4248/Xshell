@@ -4,7 +4,7 @@ def get_lang():
     return x
 
 def get_build_ver():
-    x = open("system/system64/REGISTRY/LOCAL_SYSTEM/System/SYS_VER/SYS_VER.data","r")
+    x = open("system/REGISTRY/LOCAL_SYSTEM/System/SYS_VER/SYS_VER.data","r")
     z = x.read()
     return z
 
