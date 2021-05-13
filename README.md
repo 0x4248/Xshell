@@ -6,6 +6,36 @@ Xshell is a simple python shell that runs in a local folder
 
 <img src=https://github.com/awesomelewis2007/Xshell/blob/main/document/screenshots/Screenshot_of_shell.png>
 
+## Installing
+
+to install Xshell and its depencancies you need to run the installer
+
+### using python
+
+on linux
+
+```
+cd Xshell_installer
+python3 install.py
+```
+on win
+```
+cd Xshell_installer
+python install.py
+```
+### bash
+
+```
+cd Xshell_installer
+bash install.bash
+```
+### cmd
+
+```
+cd Xshell_installer
+install.cmd
+```
+
 ## Commands
 
 ### cd
@@ -88,4 +118,14 @@ Returns the public ip address
 pubip
 ```
 
+### python
+runs a python script
+```
+python <file name>
+```
 
+### js
+runs a js file using js2py
+```
+js <file name>
+```
