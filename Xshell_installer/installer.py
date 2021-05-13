@@ -14,6 +14,10 @@ def check_installed_modules():
         import pythonping
     except:
         install.append("pythonping")
+    try:
+        import js2py
+    except:
+        install.append("js2py")
 
 check_installed_modules()
 if install == []:
@@ -35,6 +39,12 @@ for i in install:
 for i in install:
     try:
         x = "pip install "+i
+        os.system(x)
+    except:
+        print("[SKIP] An error prevented this module from being installed ")
+for i in install:
+    try:
+        x = "pip3 install "+i
         os.system(x)
     except:
         print("[SKIP] An error prevented this module from being installed ")
