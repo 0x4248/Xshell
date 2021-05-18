@@ -166,3 +166,15 @@ def run(command):
             command = command.replace("js ","")
             from system.system64.syscore.jspy import jspy
             jspy.run_file(command)
+    if "history" in command:
+        ccomand = command[:7]
+        if ccomand == "history":
+            ccomand = command[7:10]
+            if ccomand != " -c":
+                from system.system64.syscore import history
+                history.read()            
+    if "history -c" in command:
+        ccomand = command[:10]
+        if ccomand == "history -c":
+            from system.system64.syscore import history
+            history.clear()

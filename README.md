@@ -129,3 +129,15 @@ runs a js file using js2py
 ```
 js <file name>
 ```
+
+### history
+reads the history and prints it on the screen
+```
+history
+```
+### history -c
+clears the history 
+```
+history -c
+```
+

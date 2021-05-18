@@ -6,6 +6,7 @@ def get_lang():
 def get_build_ver():
     x = open("system/REGISTRY/LOCAL_SYSTEM/System/SYS_VER/SYS_VER.data","r")
     z = x.read()
+    z = z[:6]
     return z
 
 def get_welcome_message():

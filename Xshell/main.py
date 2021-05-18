@@ -10,6 +10,23 @@ class Boot:
         print("--------------------------------------------------------")
         print("Fixes:",fix)
         exit()
+    def Host_info():
+        x = platform.system()
+        x = x.upper()
+        f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data","w")
+        f.write(x)
+        f.close()
+        f = open("system/temp/OS","w")
+        f.write(x)
+        f.close()
+
+        x = platform.version()
+        f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data","w")
+        f.write(x)
+        f.close()
+        f = open("system/temp/OS_NAME","w")
+        f.write(x)
+        f.close()
 
 class Welcome:
     def get_welcome_message():
@@ -46,7 +63,7 @@ class check_system:
         import os
         from os import path
         import sys
-        paths = ["system","system/system64","system/system64/syscore","system/system64/syslib"]
+        paths = ["system","system/system64","system/system64/syscore"]
         log = "INFO: Exacuteing sys checkdisk\n"
         for i in paths:
             log = log + "INFO: Checking path '"+i+"\n"
@@ -100,34 +117,27 @@ except:
     Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
 
 check_system.check_filesystem() 
-x = platform.system()
-x = x.upper()
-f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data","w")
-f.write(x)
-f.close()
-f = open("system/temp/OS","w")
-f.write(x)
-f.close()
-
-x = platform.version()
-f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data","w")
-f.write(x)
-f.close()
-f = open("system/temp/OS_NAME","w")
-f.write(x)
-f.close()
+Boot.Host_info()
 Xshell_runing = True
-
+try:
+    history_file_read = open("system/temp/history","r")
+    history_file_read_x = history_file_read.read()
+except:
+    history_file_read = open("system/temp/history","w")
+    history_file_read.close()
+    history_file_read = open("system/temp/history","r")
+    history_file_read_x = history_file_read.read()
 print("Xshell [Build_ver:"+Welcome.get_ver()+" Running on "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
 print(Welcome.get_welcome_message())
 from system.system64 import command
+from system.system64.syscore import history
 while Xshell_runing == True:
     cwd = os.getcwd()
     xshell_text = "Xshell@"+socket.gethostname()
     print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
-
     try:
         user_input = input(color('└─>', fore='blue'))
+        history.write(user_input)
     except KeyboardInterrupt:
         print(color('\n[!] Keyboard interupt press crtl+c again to exit', fore="yellow"))
         print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
@@ -136,7 +146,6 @@ while Xshell_runing == True:
         except KeyboardInterrupt:
             print("\n")
             exit()
-
     if "exit" in user_input:
         trim_user_input = user_input[:4]
         if trim_user_input == "exit":
@@ -146,6 +155,3 @@ while Xshell_runing == True:
         if trim_user_input == "quit":
             exit()
     command.run(user_input)
-    
-    
-    
