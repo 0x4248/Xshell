@@ -1,6 +1,3 @@
-from system.system64.syscore.jspy.jspy import run_file
-
-
 def run(command):
     if "cd " in command:
         ccommand = command[:2]
