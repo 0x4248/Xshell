@@ -16,7 +16,7 @@ def run(command):
             import os
             dir = os.listdir()
             wd = os.getcwd()
-            print("──[Directory]──["+wd+"]")
+            print("[Directory]──["+wd+"]")
             for i in dir:
                 full_dir = wd+"/"+i
                 if os.path.isfile(full_dir) == True:

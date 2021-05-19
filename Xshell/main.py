@@ -117,7 +117,7 @@ except:
     Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
 
 check_system.check_filesystem() 
-Boot.Host_info()
+#Boot.Host_info()
 Xshell_runing = True
 try:
     history_file_read = open("system/temp/history","r")
