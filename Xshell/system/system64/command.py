@@ -175,3 +175,19 @@ def run(command):
         if ccomand == "history -c":
             from system.system64.syscore import history
             history.clear()
+            from colr import color
+            print(color("Removed all history!", fore="green"))
+
+    if "tree" in command:
+        ccomand = command[:4]
+        if ccomand == "tree":
+            import os
+            from colr import color
+            path = os.getcwd()
+            for root, dirs, files in os.walk(path):
+                level = root.replace(path, '').count(os.sep)
+                indent = ' ' * 4 * (level)
+                print(color('{}{}/'.format(indent, os.path.basename(root)), fore="blue"))
+                subindent = ' ' * 4 * (level + 1)
+                for f in files:
+                    print('{}{}'.format(subindent, f))

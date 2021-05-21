@@ -13,8 +13,8 @@ def remove_path(x):
     except:
         return "ERROR"
 def main():
-    x = open("system/REGISTRY/LOCAL_SYSTEM/PATH/VER","r")
-    ver = x.read()
+    from system.system64.syscore import REGISTRY
+    ver = REGISTRY.read("system\REGISTRY\LOCAL_SYSTEM\PATH\VER")
     print("Welcome to path Ver:"+ver)
     while True:
         command = input("PATH>>")

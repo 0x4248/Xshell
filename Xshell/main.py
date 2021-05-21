@@ -28,6 +28,15 @@ class Boot:
         f.write(x)
         f.close()
 
+    def path_add():
+        import sys
+        import os
+        paths = ["system/temp","system"]
+        for p in paths:
+            sys.path.append(p)
+        cwd = os.getcwd()
+        sys.path.append(cwd)
+
 class Welcome:
     def get_welcome_message():
         from system.system64 import lang
@@ -116,8 +125,13 @@ try:
 except:
     Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
 
+Boot.path_add()
 check_system.check_filesystem() 
+
+
 #Boot.Host_info()
+
+#====History====
 Xshell_runing = True
 try:
     history_file_read = open("system/temp/history","r")
@@ -127,10 +141,14 @@ except:
     history_file_read.close()
     history_file_read = open("system/temp/history","r")
     history_file_read_x = history_file_read.read()
+#====Welcome====
 print("Xshell [Build_ver:"+Welcome.get_ver()+" Running on "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
 print(Welcome.get_welcome_message())
+
+#===SYSTEM IMPORT===
 from system.system64 import command
 from system.system64.syscore import history
+#===SYS LOOP===
 while Xshell_runing == True:
     cwd = os.getcwd()
     xshell_text = "Xshell@"+socket.gethostname()
