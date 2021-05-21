@@ -11,22 +11,15 @@ class Boot:
         print("Fixes:",fix)
         exit()
     def Host_info():
+        from system.system64.syscore import REGISTRY
         x = platform.system()
         x = x.upper()
-        f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data","w")
-        f.write(x)
-        f.close()
-        f = open("system/temp/OS","w")
-        f.write(x)
-        f.close()
+        REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data",x)
+        REGISTRY.write("system/temp/OS",x)
 
         x = platform.version()
-        f = open("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data","w")
-        f.write(x)
-        f.close()
-        f = open("system/temp/OS_NAME","w")
-        f.write(x)
-        f.close()
+        REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data",x)
+        REGISTRY.write("system/temp/OS_NAME",x)
 
     def path_add():
         import sys
@@ -129,7 +122,7 @@ Boot.path_add()
 check_system.check_filesystem() 
 
 
-#Boot.Host_info()
+Boot.Host_info()
 
 #====History====
 Xshell_runing = True
@@ -148,6 +141,7 @@ print(Welcome.get_welcome_message())
 #===SYSTEM IMPORT===
 from system.system64 import command
 from system.system64.syscore import history
+from system.system64.syscore import REGISTRY
 #===SYS LOOP===
 while Xshell_runing == True:
     cwd = os.getcwd()
