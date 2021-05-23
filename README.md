@@ -23,13 +23,13 @@ on win
 cd Xshell_installer
 python install.py
 ```
-### bash
+### using bash (linux with bash)
 
 ```
 cd Xshell_installer
 bash install.bash
 ```
-### cmd
+### using cmd (windows)
 
 ```
 cd Xshell_installer
@@ -140,4 +140,8 @@ clears the history
 ```
 history -c
 ```
-
+### tree
+prints out all the items of your current directory and sub directorys
+```
+tree
+```
