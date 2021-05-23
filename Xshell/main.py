@@ -29,6 +29,43 @@ class Boot:
             sys.path.append(p)
         cwd = os.getcwd()
         sys.path.append(cwd)
+    def check_modules():
+        try:
+            import os
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module os",log="none",fix="try to install the module using pip")
+        try:
+            import sys
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module sys",log="none",fix="try to install the module using pip")
+        try:
+            import time
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module time",log="none",fix="try to install the module using pip")
+        try:
+            import datetime
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module datetime",log="none",fix="try to install the module using pip")
+        try:
+            import platform
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module platform",log="none",fix="try to install the module using pip")  
+        try:
+            from colr import color
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module colr",log="none",fix="try to install the module using pip") 
+        try:
+            import requests
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module requests",log="none",fix="try to install the module using pip") 
+        try:
+            import socket
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module socket",log="none",fix="try to install the module using pip") 
+        try:
+            import pythonping
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
 
 class Welcome:
     def get_welcome_message():
@@ -36,6 +73,12 @@ class Welcome:
         return lang.get_welcome_message()
 
     def get_ver():
+        from system.system64 import lang
+        ver = lang.get_sys_ver()
+        ver = str(ver)
+        return ver
+
+    def get_build():
         from system.system64 import lang
         ver = lang.get_build_ver()
         ver = str(ver)
@@ -59,7 +102,6 @@ class Welcome:
         ver = str(ver)
         return ver
 
-
 class check_system:
     def check_filesystem():
         import os
@@ -81,46 +123,19 @@ class check_system:
                 Boot.Fatal_cant_boot(errorno="404",reason=a,log=log,fix="Reinstall Xshell or relocate the missing path or file")
 #=====================MAIN======================
 
-try:
-    import os
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module os",log="none",fix="try to install the module using pip")
-try:
-    import sys
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module sys",log="none",fix="try to install the module using pip")
-try:
-    import time
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module time",log="none",fix="try to install the module using pip")
-try:
-    import datetime
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module datetime",log="none",fix="try to install the module using pip")
-try:
-    import platform
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module platform",log="none",fix="try to install the module using pip")  
-try:
-    from colr import color
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module colr",log="none",fix="try to install the module using pip") 
-try:
-    import requests
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module requests",log="none",fix="try to install the module using pip") 
-try:
-    import socket
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module socket",log="none",fix="try to install the module using pip") 
-try:
-    import pythonping
-except:
-    Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
-
+Boot.check_modules()
 Boot.path_add()
 check_system.check_filesystem() 
 
+import os
+import sys
+import time
+import datetime
+import platform
+from colr import color
+import requests
+import socket
+import pythonping
 
 Boot.Host_info()
 
@@ -135,7 +150,7 @@ except:
     history_file_read = open("system/temp/history","r")
     history_file_read_x = history_file_read.read()
 #====Welcome====
-print("Xshell [Build_ver:"+Welcome.get_ver()+" Running on "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
+print("Xshell [SYS_VER: "+Welcome.get_ver()+"] [BUILD_VER: "+Welcome.get_build()+"] [SYSTEM: "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
 print(Welcome.get_welcome_message())
 
 #===SYSTEM IMPORT===
