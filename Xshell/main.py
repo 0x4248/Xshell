@@ -43,6 +43,10 @@ class Boot:
         except:
             Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module time",log="none",fix="try to install the module using pip")
         try:
+            import js2py
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module js2py",log="none",fix="try to install the module using pip")
+        try:
             import datetime
         except:
             Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module datetime",log="none",fix="try to install the module using pip")
@@ -125,11 +129,11 @@ class check_system:
 
 Boot.check_modules()
 Boot.path_add()
-check_system.check_filesystem() 
-
+check_system.check_filesystem()
 import os
 import sys
 import time
+import js2py
 import datetime
 import platform
 from colr import color
