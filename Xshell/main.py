@@ -154,7 +154,7 @@ except:
     history_file_read = open("system/temp/history","r")
     history_file_read_x = history_file_read.read()
 #====Welcome====
-print("Xshell [SYS_VER: "+Welcome.get_ver()+"] [BUILD_VER: "+Welcome.get_build()+"] [SYSTEM: "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
+print("Xshell [SYS_VER: "+color(Welcome.get_ver(), fore="blue")+"] [BUILD_VER: "+color(Welcome.get_build(), fore="blue")+"] [SYSTEM: "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
 print(Welcome.get_welcome_message())
 
 #===SYSTEM IMPORT===
