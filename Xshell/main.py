@@ -117,9 +117,11 @@ class check_system:
                 log = log + "\n"
             if x == False:
                 log = log + "ERROR: Path not found '"+i+"\n"
-                log = log + "-----SYSHALT-----"
+                log = log + "Xshell Will Not contine to boot"+"\n"
+                log = log + "Printing error message and quitting"
                 a = "CHECK DISK: The system cant find the path '"+i+"'"
                 Boot.Fatal_cant_boot(errorno="404",reason=a,log=log,fix="Reinstall Xshell or relocate the missing path or file")
+        exit()
 #=====================MAIN======================
 
 Boot.check_modules()
