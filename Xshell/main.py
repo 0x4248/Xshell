@@ -66,11 +66,6 @@ class Boot:
             import socket
         except:
             Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module socket",log="none",fix="try to install the module using pip") 
-        try:
-            import pythonping
-        except:
-            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module pythonping",log="none",fix="try to install the module using pip") 
-
 class Welcome:
     def get_welcome_message():
         from system.system64 import lang
@@ -139,7 +134,6 @@ import platform
 from colr import color
 import requests
 import socket
-import pythonping
 
 Boot.Host_info()
 
