@@ -1,5 +1,8 @@
+#Xshell
+global LOG_STATE
+LOG_STATE = 1
 class Boot:
-    def Fatal_cant_boot(errorno = "Unkown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes avalible"):
+    def Fatal_cant_boot(errorno = "Unknown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes available"):
         print("[X] Fatal Xshell cant boot due to an error in the system")
         print("--------------------------------------------------------")
         print("Error Number:",errorno)
@@ -10,16 +13,39 @@ class Boot:
         print("--------------------------------------------------------")
         print("Fixes:",fix)
         exit()
+    def check_filesystem():
+        import os
+        from os import path
+        import sys
+        paths = ["system","system/system64","system/system64/syscore"]
+        log = "INFO: Exacuteing sys checkdisk\n"
+        for i in paths:
+            log = log + "INFO: Checking path '"+i+"\n"
+            x = os.path.exists(i)
+            if x == True:
+                pass
+                log = log + "INFO: The path '"+i+"' was found and continuing to next path\n"
+                log = log + "\n"
+            if x == False:
+                log = log + "ERROR: Path not found '"+i+"\n"
+                log = log + "Xshell Will Not contine to boot"+"\n"
+                log = log + "Printing error message and quitting"
+                a = "CHECK DISK: The system cant find the path '"+i+"'"
+                Boot.Fatal_cant_boot(errorno="404",reason=a,log=log,fix="Reinstall Xshell or relocate the missing path or file")
     def Host_info():
-        from system.system64.syscore import REGISTRY
-        x = platform.system()
-        x = x.upper()
-        REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data",x)
-        REGISTRY.write("system/temp/OS",x)
+        if LOG_STATE == 1:
+            from system.system64.syscore import REGISTRY
+            x = platform.system()
+            x = x.upper()
+            REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data",x)
+            REGISTRY.write("system/temp/OS",x)
 
-        x = platform.version()
-        REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data",x)
-        REGISTRY.write("system/temp/OS_NAME",x)
+            x = platform.version()
+            REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data",x)
+            REGISTRY.write("system/temp/OS_NAME",x)
+        if LOG_STATE == 0:
+            pass
+
 
     def path_add():
         import sys
@@ -101,31 +127,11 @@ class Welcome:
         ver = str(ver)
         return ver
 
-class check_system:
-    def check_filesystem():
-        import os
-        from os import path
-        import sys
-        paths = ["system","system/system64","system/system64/syscore"]
-        log = "INFO: Exacuteing sys checkdisk\n"
-        for i in paths:
-            log = log + "INFO: Checking path '"+i+"\n"
-            x = os.path.exists(i)
-            if x == True:
-                pass
-                log = log + "INFO: The path '"+i+"' was found and continuing to next path\n"
-                log = log + "\n"
-            if x == False:
-                log = log + "ERROR: Path not found '"+i+"\n"
-                log = log + "Xshell Will Not contine to boot"+"\n"
-                log = log + "Printing error message and quitting"
-                a = "CHECK DISK: The system cant find the path '"+i+"'"
-                Boot.Fatal_cant_boot(errorno="404",reason=a,log=log,fix="Reinstall Xshell or relocate the missing path or file")
 #=====================MAIN======================
 
 Boot.check_modules()
 Boot.path_add()
-check_system.check_filesystem()
+Boot.check_filesystem()
 import os
 import sys
 import time
@@ -148,10 +154,10 @@ except:
     history_file_read.close()
     history_file_read = open("system/temp/history","r")
     history_file_read_x = history_file_read.read()
-#====Welcome====
+#====Welcome===
 print("Xshell [SYS_VER: "+color(Welcome.get_ver(), fore="blue")+"] [BUILD_VER: "+color(Welcome.get_build(), fore="blue")+"] [SYSTEM: "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
-print(Welcome.get_welcome_message())
-
+if LOG_STATE == 0:
+    print(color("Xshell has started in no REG logging mode",fore="yellow"))
 #===SYSTEM IMPORT===
 from system.system64 import command
 from system.system64.syscore import history
