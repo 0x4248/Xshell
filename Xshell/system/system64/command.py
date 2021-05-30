@@ -124,8 +124,12 @@ def run(command):
         ccomand = command[:8]
         if ccomand == "makefile":
             command = command.replace("makefile ","")
-            x = open(command,"w")
-            x.write("")
+            try:
+                x = open(command,"w")
+                x.write("")
+            except:
+                from colr import color
+                print(color("[X] Cant write to file 404", fore="red"))
 
     if "locip" in command:
         ccomand = command[:5]
@@ -143,24 +147,10 @@ def run(command):
         ccomand = command[:6]
         if ccomand == "python":
             command = command.replace("python ","")
-            from system.system64.syscore import REGISTRY
+            import platform
             import os
-            command = str(command)
-            s = REGISTRY.read("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data")
+            s = platform.system()
             s = s.upper()
-            if s == "--":
-                x = open("system/temp/OS","r")
-                s = x.read()
-                x.close()
-                if s == "--":
-                    print("""1 for LINUX\n2 for WINDOWS\n3 for MACOS""")
-                    s = input("Please enter the System you are using:")
-                    if s == "1":
-                        s = "LINUX"
-                    if s == "2":
-                        s = "WINDOWS"
-                    if s == "3":
-                        s = "MACOS"
             if s == "LINUX":
                 x = "python3 "+command
                 os.system(x)
