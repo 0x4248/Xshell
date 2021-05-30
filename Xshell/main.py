@@ -1,6 +1,6 @@
 #Xshell
 global LOG_STATE
-LOG_STATE = 1
+LOG_STATE = 0
 class Boot:
     def Fatal_cant_boot(errorno = "Unknown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes available"):
         print("[X] Fatal Xshell cant boot due to an error in the system")
@@ -18,7 +18,7 @@ class Boot:
         from os import path
         import sys
         paths = ["system","system/system64","system/system64/syscore"]
-        log = "INFO: Exacuteing sys checkdisk\n"
+        log = "INFO: Executing sys checkdisk\n"
         for i in paths:
             log = log + "INFO: Checking path '"+i+"\n"
             x = os.path.exists(i)
@@ -145,7 +145,7 @@ import socket
 Boot.Host_info()
 
 #====History====
-Xshell_runing = True
+Xshell_ruling = True
 try:
     history_file_read = open("system/temp/history","r")
     history_file_read_x = history_file_read.read()
@@ -163,7 +163,7 @@ from system.system64 import command
 from system.system64.syscore import history
 from system.system64.syscore import REGISTRY
 #===SYS LOOP===
-while Xshell_runing == True:
+while Xshell_ruling == True:
     cwd = os.getcwd()
     xshell_text = "Xshell@"+socket.gethostname()
     print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
@@ -171,7 +171,7 @@ while Xshell_runing == True:
         user_input = input(color('└─>', fore='blue'))
         history.write(user_input)
     except KeyboardInterrupt:
-        print(color('\n[!] Keyboard interupt press crtl+c again to exit', fore="yellow"))
+        print(color('\n[!] Keyboard interrupt press ctrl+c again to exit', fore="yellow"))
         print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
         try:
             user_input = input(color('└─>', fore='blue'))
