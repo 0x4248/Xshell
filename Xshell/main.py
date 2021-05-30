@@ -1,6 +1,6 @@
 #Xshell
 global LOG_STATE
-LOG_STATE = 0
+LOG_STATE = 1
 class Boot:
     def Fatal_cant_boot(errorno = "Unknown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes available"):
         print("[X] Fatal Xshell cant boot due to an error in the system")
