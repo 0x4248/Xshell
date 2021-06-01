@@ -14,8 +14,86 @@ def run(command):
         ccommand = command[:3]
         if ccommand == "dir":
             import os
+            from colr import color
             dir = os.listdir()
             wd = os.getcwd()
+            system_files = [".sys",".cab",".dll",".bin",".reg",".tmp",".temp"]
+            executable_files = [".exe",".msi",".sh"]
+            lang_files = [".py",".pyc",".js",".jsm",".c",".h",".cs","cpp",".css",".html",".com",".bash",".bat",".java"]
+            images = [".png",".jpg",".jpeg",".ico"]
+            data = [".db",".data",".json",".dat"]
+            if "-c" in command:
+                from random import randint
+                if randint(1,1000) == 1:
+                    x = ["[","D","i","r","n","e","c","t","o","r","y","]","─","─","[",wd,"]"]
+                    print(color("[",fore="green")+color("D",fore="blue")+color("i",fore="red")+color("r",fore="green")+
+                    color("e",fore="blue")+color("c",fore="red")+color("t",fore="green")+color("o",fore="blue")+
+                    color("r",fore="red")+color("y",fore="green")+color("]",fore="blue")+color("─",fore="red")+
+                    color("─",fore="green")+color("[",fore="blue")+color(wd,fore="red")+color("]",fore="green"))
+                print("[Directory]──["+wd+"]")
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        for file in system_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="blue"))
+                        for file in executable_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="green"))
+                        for file in lang_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="cyan"))
+                        for file in images:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="orange"))
+                        for file in data:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="purple"))
+                    if os.path.isdir(full_dir) == True:
+                        print("/"+i)
+                return None
+            if "--colour" in command:
+                from random import randint
+                if randint(1,1000) == 1:
+                    x = ["[","D","i","r","n","e","c","t","o","r","y","]","─","─","[",wd,"]"]
+                    print(color("[",fore="green")+color("D",fore="blue")+color("i",fore="red")+color("r",fore="green")+
+                    color("e",fore="blue")+color("c",fore="red")+color("t",fore="green")+color("o",fore="blue")+
+                    color("r",fore="red")+color("y",fore="green")+color("]",fore="blue")+color("─",fore="red")+
+                    color("─",fore="green")+color("[",fore="blue")+color(wd,fore="red")+color("]",fore="green"))
+                print("[Directory]──["+wd+"]")
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        for file in system_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="blue"))
+                        for file in executable_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="green"))
+                        for file in lang_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="cyan"))
+                        for file in images:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="orange"))
+                        for file in data:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="purple"))
+                    if os.path.isdir(full_dir) == True:
+                        print("/"+i)
+                return None
+            if "--help" in command:
+                print("Usage of dir command")
+                print("dir [-command]")
+                print("-c   --colour      prints files with colouring")
+                print("-h   --help        prints this help message")
+                return None
+            if "--help" in command:
+                print("Usage of dir command")
+                print("dir [-command]")
+                print("-c   --colour      prints files with colouring")
+                print("-h   --help        prints this help message")
+                return None
             print("[Directory]──["+wd+"]")
             for i in dir:
                 full_dir = wd+"/"+i
@@ -23,21 +101,121 @@ def run(command):
                     print("[FILE]─["+i+"]")
                 if os.path.isdir(full_dir) == True:
                     print("[DIR]──["+i+"]")
+
     if "ls" in command:
         from colr import color
-        ccommand = command[:3]
+        ccommand = command[:2]
         if ccommand == "ls":
             import os
             dir = os.listdir()
             wd = os.getcwd()
+            #file colouring
+            system_files = [".sys",".cab",".dll",".bin",".reg",".tmp",".temp"]
+            executable_files = [".exe",".msi",".sh"]
+            lang_files = [".py",".pyc",".js",".jsm",".c",".h",".cs","cpp",".css",".html",".com",".bash",".bat",".java"]
+            images = [".png",".jpg",".jpeg",".ico"]
+            data = [".db",".data",".json",".dat"]
+            if "-d" in command:
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        pass
+                    if os.path.isdir(full_dir) == True:
+                        print("/"+i)
+                return None
+            if "--directory" in command:
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        pass
+                    if os.path.isdir(full_dir) == True:
+                        print("/"+i)
+                return None
+            if "-f" in command:
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        print(color(i,fore="white"))
+                    if os.path.isdir(full_dir) == True:
+                        pass
+                return None
+
+            if "--files" in command:
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        print(color(i,fore="white"))
+                    if os.path.isdir(full_dir) == True:
+                        pass
+                return None
+
+            if "-c" in command:
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        for file in system_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="blue"))
+                        for file in executable_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="green"))
+                        for file in lang_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="cyan"))
+                        for file in images:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="orange"))
+                        for file in data:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="purple"))
+                    if os.path.isdir(full_dir) == True:
+                        print("/"+i)
+                return None
+            if "--colour" in command:
+                for i in dir:
+                    full_dir = wd+"/"+i
+                    if os.path.isfile(full_dir) == True:
+                        for file in system_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="blue"))
+                        for file in executable_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="green"))
+                        for file in lang_files:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="cyan"))
+                        for file in images:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="orange"))
+                        for file in data:
+                            if i.endswith(file) == True:
+                                print(color(i,fore="purple"))
+                    if os.path.isdir(full_dir) == True:
+                        print("/"+i)
+                return None
+            if "--help" in command:
+                print("Usage of ls command")
+                print("ls [-command]")
+                print("-c   --colour      prints files with colouring")
+                print("-d   --directory   only prints directory's")
+                print("-f   --files       only prints files")
+                print("-h   --help        prints this help message")
+                return None
+            if "--help" in command:
+                print("Usage of ls command")
+                print("ls [-command]")
+                print("-c   --colour      prints files with colouring")
+                print("-d   --directory   only prints directory's")
+                print("-f   --files       only prints files")
+                print("-h   --help        prints this help message")
+                return None
             for i in dir:
                 full_dir = wd+"/"+i
                 if os.path.isfile(full_dir) == True:
-                    print(color(i, fore="white"))
+                    print(color(i,fore="white"))
                 if os.path.isdir(full_dir) == True:
-                    xi = "/"+i+""
-                    print(color(xi, fore="blue"))
-    
+                    print(color(i,fore="white"))
+
     if "print " in command:
         ccommand = command[:5]
         if ccommand == "print":
@@ -143,6 +321,7 @@ def run(command):
         if ccomand == "pubip":
             from system.system64.syscore import internet_protocol
             print(internet_protocol.get_public_ip())
+
     if "python " in command:
         ccomand = command[:6]
         if ccomand == "python":
@@ -174,7 +353,8 @@ def run(command):
             ccomand = command[7:10]
             if ccomand != " -c":
                 from system.system64.syscore import history
-                history.read()            
+                history.read()    
+
     if "history -c" in command:
         ccomand = command[:10]
         if ccomand == "history -c":
