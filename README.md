@@ -1,6 +1,12 @@
-# Xshell
+<h1>Welcome to the Xshell respitory</h1>
 <img src=https://github.com/awesomelewis2007/Xshell/blob/main/document/Xshell_banner.png>
-Welcome to the Xshell respitory
+
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/awesomelewis2007/Xshell?label=Xshell)
+![GitHub](https://img.shields.io/github/license/awesomelewis2007/Xshell?color=blue)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/awesomelewis2007/Xshell?label=Latest%20version%20%20)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/awesomelewis2007/Xshell?color=blue&include_prereleases)
+![Pyver](https://img.shields.io/badge/Python%20Version-3.9.5-blue)
+![GitHub top language](https://img.shields.io/github/languages/top/awesomelewis2007/Xshell)
 
 Xshell is a simple python shell that runs in a local folder
 
@@ -52,19 +58,20 @@ You can also do `cd \` to go to your root folder
 ### dir
 
 This lists the directoy that your currently in like
-
+-c   --colour      prints files with colouring
+-h   --help        prints this help message
 ```
-──[Directory]──[~/folder]
-[FILE]──[file.txt]
-[DIR]──[other_folder]
+dir [-c,-h]
 ```
 ### ls
 
 List the directoy your in but with a more simpler veiw
-
+-c   --colour      prints files with colouring
+-d   --directory   only prints directory's
+-f   --files       only prints files
+-h   --help        prints this help message
 ```
-\folder
-text.txt
+ls [-d,-h,-f,-c]
 ```
 
 Note files will be coloerd white and directorys will be blue
@@ -132,14 +139,12 @@ js <file name>
 
 ### history
 reads the history and prints it on the screen
+
+the argument `-c` clears the history
 ```
-history
+history [-c]
 ```
-### history -c
-clears the history 
-```
-history -c
-```
+
 ### tree
 prints out all the items of your current directory and sub directorys
 ```
