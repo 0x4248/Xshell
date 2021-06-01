@@ -1,4 +1,5 @@
-#Xshell
+#! bin/python39
+#Xshell GNU public licence
 global LOG_STATE
 LOG_STATE = 1
 class Boot:
