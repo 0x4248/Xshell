@@ -1,6 +1,3 @@
-from math import trunc
-
-
 def run(command):
     if "cd " in command:
         ccommand = command[:2]
