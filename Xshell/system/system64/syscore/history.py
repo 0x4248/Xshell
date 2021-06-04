@@ -1,15 +1,29 @@
 import os
+from re import IGNORECASE
+from system.system64.syscore import REGISTRY
 wd = os.getcwd()
 def read():  
     f = open(wd+"/"+"system/temp/history","r")
     x = f.read()
-    x = x.replace("{Xshell - History}","")
+    ingnore = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/IGNORE.data")
+    x = x.replace(ingnore,"")
     print(x)
 
 def clear():
     f = open(wd+"/"+"system/temp/history","w")
-    f.write("{Xshell - History}")
+    start_file = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/START_FILE.data")
+    f.write(start_file)
 
 def write(command):
     f = open(wd+"/"+"system/temp/history","a")
     f.write("\n"+command)
+def set_to(x):
+    """
+    1 for history to be on
+    0 for history to be off
+    """
+    
+    if x == "0":
+        REGISTRY.write("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data","0")
+    if x == "1":
+        REGISTRY.write("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data","1")

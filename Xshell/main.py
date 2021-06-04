@@ -1,7 +1,5 @@
 #! bin/python39
 #Xshell GNU public licence
-global LOG_STATE
-LOG_STATE = 1
 class Boot:
     def Fatal_cant_boot(errorno = "Unknown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes available"):
         print("[X] Fatal Xshell cant boot due to an error in the system")
@@ -34,7 +32,7 @@ class Boot:
                 a = "CHECK DISK: The system cant find the path '"+i+"'"
                 Boot.Fatal_cant_boot(errorno="404",reason=a,log=log,fix="Reinstall Xshell or relocate the missing path or file")
     def Host_info():
-        if LOG_STATE == 1:
+        if LOG_STATE == "1":
             from system.system64.syscore import REGISTRY
             x = platform.system()
             x = x.upper()
@@ -44,7 +42,7 @@ class Boot:
             x = platform.version()
             REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data",x)
             REGISTRY.write("system/temp/OS_NAME",x)
-        if LOG_STATE == 0:
+        if LOG_STATE == "0":
             pass
 
 
@@ -129,7 +127,9 @@ class Welcome:
         return ver
 
 #=====================MAIN======================
-
+from system.system64.syscore import REGISTRY
+global LOG_STATE
+LOG_STATE = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/OS_LOGGING_STATE/LOGSTATE.data")
 Boot.check_modules()
 Boot.path_add()
 Boot.check_filesystem()
@@ -157,12 +157,14 @@ except:
     history_file_read_x = history_file_read.read()
 #====Welcome===
 print("Xshell [SYS_VER: "+color(Welcome.get_ver(), fore="blue")+"] [BUILD_VER: "+color(Welcome.get_build(), fore="blue")+"] [SYSTEM: "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
-if LOG_STATE == 0:
+if LOG_STATE == "0":
     print(color("Xshell has started in no REG logging mode",fore="yellow"))
+if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data") == "0":
+    print(color("History is off use 'history -on' to enable it again",fore="yellow"))
 #===SYSTEM IMPORT===
 from system.system64 import command
 from system.system64.syscore import history
-from system.system64.syscore import REGISTRY
+
 #===SYS LOOP===
 while Xshell_ruling == True:
     cwd = os.getcwd()
@@ -170,7 +172,8 @@ while Xshell_ruling == True:
     print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
     try:
         user_input = input(color('└─>', fore='blue'))
-        history.write(user_input)
+        if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data") == "1":
+            history.write(user_input)
     except KeyboardInterrupt:
         print(color('\n[!] Keyboard interrupt press ctrl+c again to exit', fore="yellow"))
         print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))

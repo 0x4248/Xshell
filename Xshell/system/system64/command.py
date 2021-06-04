@@ -1,3 +1,6 @@
+from math import trunc
+
+
 def run(command):
     if "cd " in command:
         ccommand = command[:2]
@@ -12,6 +15,7 @@ def run(command):
 
     if "dir" in command:
         ccommand = command[:3]
+
         if ccommand == "dir":
             import os
             from colr import color
@@ -347,14 +351,6 @@ def run(command):
             command = command.replace("js ","")
             from system.system64.syscore.jspy import jspy
             jspy.run_file(command)
-    if "history" in command:
-        ccomand = command[:7]
-        if ccomand == "history":
-            ccomand = command[7:10]
-            if ccomand != " -c":
-                from system.system64.syscore import history
-                history.read()    
-
     if "history -c" in command:
         ccomand = command[:10]
         if ccomand == "history -c":
@@ -363,16 +359,72 @@ def run(command):
             from colr import color
             print(color("Removed all history!", fore="green"))
 
+    if "history -on" in command:
+        ccomand = command[:11]
+        if ccomand == "history -on":
+            from system.system64.syscore import history
+            history.set_to("1")
+            from colr import color
+            print(color("History is now on", fore="green"))
+
+    if "history -off" in command:
+        ccomand = command[:12]
+        if ccomand == "history -off":
+            from system.system64.syscore import history
+            history.set_to("0")
+            from colr import color
+            print(color("History is now off", fore="green"))
+
+    if "history" in command:
+        ccomand = command[:7]
+        if ccomand == "history":
+            ccomand = command[7:10]
+            if " -c" or "-on" or "-off" in command:
+                return None
+            from system.system64.syscore import history
+            history.read()    
+
     if "tree" in command:
         ccomand = command[:4]
-        if ccomand == "tree":
-            import os
-            from colr import color
-            path = os.getcwd()
-            for root, dirs, files in os.walk(path):
-                level = root.replace(path, '').count(os.sep)
-                indent = ' ' * 4 * (level)
-                print(color('{}{}/'.format(indent, os.path.basename(root)), fore="blue"))
-                subindent = ' ' * 4 * (level + 1)
-                for f in files:
-                    print('{}{}'.format(subindent, f))
+        if "--colour-off" in command:
+            if ccomand == "tree":
+                import os
+                path = os.getcwd()
+                for root, dirs, files in os.walk(path):
+                    level = root.replace(path, '').count(os.sep)
+                    indent = ' ' * 4 * (level)
+                    print('{}{}/'.format(indent, os.path.basename(root)))
+                    subindent = ' ' * 4 * (level + 1)
+                    for f in files:
+                        print('{}{}'.format(subindent, f))
+        if "--colour-off" not in command:
+            if ccomand == "tree":
+                import os
+                from colr import color
+                path = os.getcwd()
+                for root, dirs, files in os.walk(path):
+                    level = root.replace(path, '').count(os.sep)
+                    indent = ' ' * 4 * (level)
+                    print(color('{}{}/'.format(indent, os.path.basename(root)), fore="blue"))
+                    subindent = ' ' * 4 * (level + 1)
+                    for f in files:
+                        print('{}{}'.format(subindent, f))
+    if "github" in command:
+        from colr import color
+        print("Source Code:", color("https://github.com/awesomelewis2007/Xshell", fore="blue"))
+    
+    if "lines" in command:
+        ccomand = command[:5]
+        if ccomand == "lines":
+            command = command.replace("lines ","")
+            count=0
+            try:
+                with open(command) as f:
+                    for _ in f:
+                        count += 1
+                        print(count)
+            except FileNotFoundError:
+                from colr import color
+                print(color("[X] File no found 404", fore="red"))
+                return None
+    
