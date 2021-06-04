@@ -141,12 +141,15 @@ js <file name>
 reads the history and prints it on the screen
 
 the argument `-c` clears the history
+the argument `-on` turn on history logging
+the argument `-c` turn off history logging
 ```
-history [-c]
+history [-c,-on,-off]
 ```
 
 ### tree
 prints out all the items of your current directory and sub directorys
+the argument `--colour-off` prints without colouring
 ```
-tree
+tree[--colour-off]
 ```
