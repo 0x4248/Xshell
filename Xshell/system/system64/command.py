@@ -376,8 +376,6 @@ def run(command):
         ccomand = command[:7]
         if ccomand == "history":
             ccomand = command[7:10]
-            if " -c" or "-on" or "-off" in command:
-                return None
             from system.system64.syscore import history
             history.read()    
 
