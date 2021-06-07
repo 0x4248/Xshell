@@ -161,6 +161,7 @@ if LOG_STATE == "0":
     print(color("Xshell has started in no REG logging mode",fore="yellow"))
 if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data") == "0":
     print(color("History is off use 'history -on' to enable it again",fore="yellow"))
+Welcome.get_welcome_message()
 #===SYSTEM IMPORT===
 from system.system64 import command
 from system.system64.syscore import history
