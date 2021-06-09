@@ -1,4 +1,4 @@
-<h1>Welcome to the Xshell respitory</h1>
+<h1>Welcome to the Xshell Source Code</h1>
 <img src=https://github.com/awesomelewis2007/Xshell/blob/main/document/Xshell_banner.png>
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/awesomelewis2007/Xshell?label=Xshell)
