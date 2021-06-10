@@ -1,3 +1,8 @@
+import logging
+logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/System_log.log')
+global log
+log = logging.getLogger('Command')
+
 def run(command):
     if "cd " in command:
         ccommand = command[:2]
@@ -422,4 +427,26 @@ def run(command):
                 from colr import color
                 print(color("[X] File no found 404", fore="red"))
                 return None
-    
+    if "fc" in command:
+        ccomand = command[:2]
+        if "-t" in command:
+            from colr import color
+            import os
+            import shutil
+            
+            print(color("[!] Warning this will clear all temp including your",fore="yellow")+color("history",fore="red"))
+            print("Note: Xshell may not be responsive or crash at any moment if this is done!")
+            dir = os.listdir("system/temp")
+
+            for i in dir:
+                path = "system/temp"+"/"+str(i)
+                print("Removing File:"+path)
+                try:
+                    shutil.move(path,"system\SYSTEM_TRASH")
+                except PermissionError:
+                    print(color("[X] The File:"+path+" can not be removed due to a permmition error 401", fore="red"))
+                    print("Try removing the file without Xshell Running")
+                except FileNotFoundError:
+                    print(color("[X] The File:"+path+" can not be removed due to a file not found error 404", fore="red"))
+                except FileExistsError:
+                    print(color("[X] The File:"+path+" can not be removed due to file is already in the SYSTEM_TRASH folder 406", fore="red"))  

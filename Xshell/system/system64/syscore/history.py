@@ -8,21 +8,21 @@ def read():
     ingnore = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/IGNORE.data")
     x = x.replace(ingnore,"")
     print(x)
-
+    f.close()
 def clear():
     f = open(wd+"/"+"system/temp/history","w")
     start_file = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/START_FILE.data")
     f.write(start_file)
-
+    f.close()
 def write(command):
     f = open(wd+"/"+"system/temp/history","a")
     f.write("\n"+command)
+    f.close()
 def set_to(x):
     """
     1 for history to be on
     0 for history to be off
     """
-    
     if x == "0":
         REGISTRY.write("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data","0")
     if x == "1":
