@@ -10,5 +10,14 @@
         "locip",
         "pubip",
         "syscore"
-    ]
+    ],
+    "python.analysis.logLevel": "Trace",
+    "python.languageServer": "Pylance",
+    "files.exclude": {
+        "**/.DS_Store": false,
+        "**/.git": false,
+        "**/.hg": false,
+        "**/.svn": false,
+        "**/CVS": false
+      }
 }
