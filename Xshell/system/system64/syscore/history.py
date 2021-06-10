@@ -5,8 +5,8 @@ wd = os.getcwd()
 def read():  
     f = open(wd+"/"+"system/temp/history","r")
     x = f.read()
-    ingnore = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/IGNORE.data")
-    x = x.replace(ingnore,"")
+    ignore = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/IGNORE.data")
+    x = x.replace(ignore,"")
     print(x)
     f.close()
 def clear():

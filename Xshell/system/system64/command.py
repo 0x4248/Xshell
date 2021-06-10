@@ -229,7 +229,7 @@ def run(command):
             try:
                 file = open(command,"r")
                 print(file.read())    
-            except FileNotFoundError:
+            except FileNotFoundError: 
                 from colr import color
                 print(color("[X] File not found 404", fore="red"))
     if "$ " in command:
@@ -290,8 +290,8 @@ def run(command):
 
     if "mkdir " in command:
         import os
-        ccomand = command[:5]
-        if ccomand == "mkdir":
+        ccommand = command[:5]
+        if ccommand == "mkdir":
             command = command.replace("mkdir ","")
             try:
                 from colr import color
@@ -305,8 +305,8 @@ def run(command):
                 print(color("[X] ERROR OS ERROR 105", fore="red"))
 
     if "makefile " in command:
-        ccomand = command[:8]
-        if ccomand == "makefile":
+        ccommand = command[:8]
+        if ccommand == "makefile":
             command = command.replace("makefile ","")
             try:
                 x = open(command,"w")
@@ -316,21 +316,21 @@ def run(command):
                 print(color("[X] Cant write to file 404", fore="red"))
 
     if "locip" in command:
-        ccomand = command[:5]
-        if ccomand == "locip":
+        ccommand = command[:5]
+        if ccommand == "locip":
             from system.system64.syscore import internet_protocol
             print(internet_protocol.get_local_ip())
             
 
     if "pubip" in command:
-        ccomand = command[:5]
-        if ccomand == "pubip":
+        ccommand = command[:5]
+        if ccommand == "pubip":
             from system.system64.syscore import internet_protocol
             print(internet_protocol.get_public_ip())
 
     if "python " in command:
-        ccomand = command[:6]
-        if ccomand == "python":
+        ccommand = command[:6]
+        if ccommand == "python":
             command = command.replace("python ","")
             import platform
             import os
@@ -348,46 +348,46 @@ def run(command):
                 x = "python "+command
                 os.system(x)
     if "js " in command:
-        ccomand = command[:2]
-        if ccomand == "js":
+        ccommand = command[:2]
+        if ccommand == "js":
             command = command.replace("js ","")
             from system.system64.syscore.jspy import jspy
             jspy.run_file(command)
     if "history -c" in command:
-        ccomand = command[:10]
-        if ccomand == "history -c":
+        ccommand = command[:10]
+        if ccommand == "history -c":
             from system.system64.syscore import history
             history.clear()
             from colr import color
             print(color("Removed all history!", fore="green"))
 
     if "history -on" in command:
-        ccomand = command[:11]
-        if ccomand == "history -on":
+        ccommand = command[:11]
+        if ccommand == "history -on":
             from system.system64.syscore import history
             history.set_to("1")
             from colr import color
             print(color("History is now on", fore="green"))
 
     if "history -off" in command:
-        ccomand = command[:12]
-        if ccomand == "history -off":
+        ccommand = command[:12]
+        if ccommand == "history -off":
             from system.system64.syscore import history
             history.set_to("0")
             from colr import color
             print(color("History is now off", fore="green"))
 
     if "history" in command:
-        ccomand = command[:7]
-        if ccomand == "history":
-            ccomand = command[7:10]
+        ccommand = command[:7]
+        if ccommand == "history":
+            ccommand = command[7:10]
             from system.system64.syscore import history
             history.read()    
 
     if "tree" in command:
-        ccomand = command[:4]
+        ccommand = command[:4]
         if "--colour-off" in command:
-            if ccomand == "tree":
+            if ccommand == "tree":
                 import os
                 path = os.getcwd()
                 for root, dirs, files in os.walk(path):
@@ -398,7 +398,7 @@ def run(command):
                     for f in files:
                         print('{}{}'.format(subindent, f))
         if "--colour-off" not in command:
-            if ccomand == "tree":
+            if ccommand == "tree":
                 import os
                 from colr import color
                 path = os.getcwd()
@@ -414,8 +414,8 @@ def run(command):
         print("Source Code:", color("https://github.com/awesomelewis2007/Xshell", fore="blue"))
     
     if "lines" in command:
-        ccomand = command[:5]
-        if ccomand == "lines":
+        ccommand = command[:5]
+        if ccommand == "lines":
             command = command.replace("lines ","")
             count=0
             try:
@@ -428,7 +428,7 @@ def run(command):
                 print(color("[X] File no found 404", fore="red"))
                 return None
     if "fc" in command:
-        ccomand = command[:2]
+        ccommand = command[:2]
         if "-t" in command:
             from colr import color
             import os
