@@ -19,6 +19,5 @@ def test_6():
 def test_7():
     from system.system64 import lang
     lang.get_welcome_message()
-def test_8():
-    import main
+
     
