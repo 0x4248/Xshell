@@ -195,7 +195,7 @@ while Xshell_running == True:
         except KeyboardInterrupt:
             print("\n")
             log.info("^c was pressed closing Xshell")
-            log.log("Killing System")
+            log.info("Killing System")
             exit()
     lg = "Running Command:"+user_input
     log.info(msg=lg)
@@ -203,11 +203,11 @@ while Xshell_running == True:
     if "exit" in user_input:
         trim_user_input = user_input[:4]
         if trim_user_input == "exit":
-            log.log("Killing System")
+            log.info("Killing System")
             exit()
     if "quit" in user_input:
         trim_user_input = user_input[:4]
         if trim_user_input == "quit":
-            log.log("Killing System")
+            log.info("Killing System")
             exit()
     command.run(user_input)
