@@ -56,25 +56,9 @@ class Boot:
         sys.path.append(cwd)
     def check_modules():
         try:
-            import os
-        except:
-            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module os",log="none",fix="try to install the module using pip")
-        try:
-            import sys
-        except:
-            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module sys",log="none",fix="try to install the module using pip")
-        try:
-            import time
-        except:
-            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module time",log="none",fix="try to install the module using pip")
-        try:
             import js2py
         except:
             Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module js2py",log="none",fix="try to install the module using pip")
-        try:
-            import datetime
-        except:
-            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module datetime",log="none",fix="try to install the module using pip")
         try:
             import platform
         except:
@@ -146,27 +130,27 @@ Boot.path_add()
 Boot.check_filesystem()
 
 import os
-log.info(msg="Importing module:os")
+log.info(msg="Imported module:os")
 import sys
-log.info(msg="Importing module:sys")
+log.info(msg="Imported module:sys")
 import time
-log.info(msg="Importing module:time")
+log.info(msg="Imported module:time")
 import js2py
-log.info(msg="Importing module:js2py")
+log.info(msg="Imported module:js2py")
 import datetime
-log.info(msg="Importing module:datetime")
+log.info(msg="Imported module:datetime")
 import platform
-log.info(msg="Importing module:platform")
+log.info(msg="Imported module:platform")
 from colr import color
-log.info(msg="Importing module:color")
+log.info(msg="Imported module:color")
 import requests
-log.info(msg="Importing module:requests")
+log.info(msg="Imported module:requests")
 import socket
-log.info(msg="Importing module:socket")
+log.info(msg="Imported module:socket")
 
 Boot.Host_info()
 
-#====History====
+#====History=====
 Xshell_running = True
 try:
     history_file_read = open("system/temp/history","r")
@@ -180,7 +164,7 @@ except:
     history_file_read = open("system/temp/history","r")
     history_file_read_x = history_file_read.read()
     log.info(msg="Successfully read history")
-#====Welcome===
+#====Welcome====
 print("Xshell [SYS_VER: "+color(Welcome.get_ver(), fore="blue")+"] [BUILD_VER: "+color(Welcome.get_build(), fore="blue")+"] [SYSTEM: "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
 if REG_LOG_STATE == "0":
     print(color("Xshell has started in no REG logging mode",fore="yellow"))
@@ -189,11 +173,11 @@ if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data") 
     log.info("History is off")
     print(color("History is off use 'history -on' to enable it again",fore="yellow"))
 Welcome.get_welcome_message()
-#===SYSTEM IMPORT===
+#====SYSTEM IMPORT====
 from system.system64 import command
 from system.system64.syscore import history
 
-#===SYS LOOP===
+#====SYS LOOP====
 while Xshell_running == True:
     cwd = os.getcwd()
     xshell_text = "Xshell@"+socket.gethostname()
@@ -203,7 +187,7 @@ while Xshell_running == True:
         if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data") == "1":
             history.write(user_input)
     except KeyboardInterrupt:
-        log.info("^c was pressed sent warning")
+        log.info("^c was pressed sending warning")
         print(color('\n[!] Keyboard interrupt press ctrl+c again to exit', fore="yellow"))
         print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
         try:
@@ -211,16 +195,19 @@ while Xshell_running == True:
         except KeyboardInterrupt:
             print("\n")
             log.info("^c was pressed closing Xshell")
-            exit()
-    if "exit" in user_input:
-        trim_user_input = user_input[:4]
-        if trim_user_input == "exit":
-            exit()
-    if "quit" in user_input:
-        trim_user_input = user_input[:4]
-        if trim_user_input == "quit":
+            log.log("Killing System")
             exit()
     lg = "Running Command:"+user_input
     log.info(msg=lg)
     del lg
+    if "exit" in user_input:
+        trim_user_input = user_input[:4]
+        if trim_user_input == "exit":
+            log.log("Killing System")
+            exit()
+    if "quit" in user_input:
+        trim_user_input = user_input[:4]
+        if trim_user_input == "quit":
+            log.log("Killing System")
+            exit()
     command.run(user_input)

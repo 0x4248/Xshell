@@ -427,17 +427,15 @@ def run(command):
                 from colr import color
                 print(color("[X] File no found 404", fore="red"))
                 return None
-    if "fc" in command:
+    if "tc" in command:
         ccommand = command[:2]
-        if "-t" in command:
+        if ccommand == "tc":
             from colr import color
             import os
             import shutil
-            
             print(color("[!] Warning this will clear all temp including your",fore="yellow")+color("history",fore="red"))
             print("Note: Xshell may not be responsive or crash at any moment if this is done!")
             dir = os.listdir("system/temp")
-
             for i in dir:
                 path = "system/temp"+"/"+str(i)
                 print("Removing File:"+path)
