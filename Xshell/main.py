@@ -124,7 +124,7 @@ class Welcome:
 from system.system64.syscore import REGISTRY
 global LOG_STATE
 log.info(msg="Reading registory log state")
-REG_LOG_STATE = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/OS_LOGGING_STATE/REG_LOGGING.data")
+REG_LOG_STATE = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/OS_LOGGING_STATE/REG_LOGGING.data")
 
 Boot.path_add()
 Boot.check_filesystem()
@@ -148,6 +148,7 @@ log.info(msg="Imported module:requests")
 import socket
 log.info(msg="Imported module:socket")
 
+
 Boot.Host_info()
 
 #====History=====
@@ -169,7 +170,7 @@ print("Xshell [SYS_VER: "+color(Welcome.get_ver(), fore="blue")+"] [BUILD_VER: "
 if REG_LOG_STATE == "0":
     print(color("Xshell has started in no REG logging mode",fore="yellow"))
     log.debug("Running in No Reg logging")
-if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data") == "0":
+if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/HISTORY/HISTORY_ON.data") == "0":
     log.info("History is off")
     print(color("History is off use 'history -on' to enable it again",fore="yellow"))
 Welcome.get_welcome_message()
@@ -184,8 +185,6 @@ while Xshell_running == True:
     print(color('┌──[', fore='blue')+color(xshell_text, fore='green')+color(']──[', fore='blue')+cwd+color(']', fore='blue'))
     try:
         user_input = input(color('└─>', fore='blue'))
-        if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/HISTORY/HISTORY_ON.data") == "1":
-            history.write(user_input)
     except KeyboardInterrupt:
         log.info("^c was pressed sending warning")
         print(color('\n[!] Keyboard interrupt press ctrl+c again to exit', fore="yellow"))
@@ -211,3 +210,9 @@ while Xshell_running == True:
             log.info("Killing System")
             exit()
     command.run(user_input)
+    try:
+        if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/HISTORY/HISTORY_ON.data") == "1":
+            history.write(user_input)
+            
+    except:
+        log.error("Something is going wrong in the history Xshell Can't Write")

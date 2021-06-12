@@ -5,13 +5,13 @@ def get_lang():
 
 def get_sys_ver():
     from system.system64.syscore import REGISTRY
-    z = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/SYS_VER/SYS_VER.data")
+    z = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_VER/SYS_VER.data")
     z = z[:6]
     return z
 
 def get_build_ver():
     from system.system64.syscore import REGISTRY
-    z = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/System/SYS_BUILD/VER.data")
+    z = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_BUILD/VER.data")
     z = z[:18]
     return z
 
