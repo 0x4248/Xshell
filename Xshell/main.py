@@ -79,49 +79,24 @@ class Boot:
             import logging
         except:
             Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module logging",log="none",fix="try to install the module using pip")  
-
+        try:
+            import psutil
+        except:
+            Boot.Fatal_cant_boot(errorno="403",reason="Xshell can't import the module psutil",log="none",fix="try to install the module using pip")  
+                
 Boot.check_modules()  
 import logging
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System_log.log')
 global log
 log = logging.getLogger('main')
 
-class Welcome:
-    def get_welcome_message():
-        from system.system64 import lang
-        return lang.get_welcome_message()
-    def get_ver():
-        from system.system64 import lang
-        ver = lang.get_sys_ver()
-        ver = str(ver)
-        return ver
 
-    def get_build():
-        from system.system64 import lang
-        ver = lang.get_build_ver()
-        ver = str(ver)
-        return ver
-
-    def get_cpu():
-        import platform
-        cpu = platform.processor()
-        cpu = str(cpu)
-        return cpu
-
-    def get_os_type():
-        import platform
-        system = platform.system()
-        system = str(system)
-        return system
-
-    def get_os_ver():
-        import platform
-        ver = platform.version()
-        ver = str(ver)
-        return ver
 
 #=====================MAIN======================
 from system.system64.syscore import REGISTRY
+from system.system64.syscore.usr import Login
+Login.Welcome.message()
+
 global LOG_STATE
 log.info(msg="Reading registory log state")
 REG_LOG_STATE = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/OS_LOGGING_STATE/REG_LOGGING.data")
@@ -166,14 +141,16 @@ except:
     history_file_read_x = history_file_read.read()
     log.info(msg="Successfully read history")
 #====Welcome====
-print("Xshell [SYS_VER: "+color(Welcome.get_ver(), fore="blue")+"] [BUILD_VER: "+color(Welcome.get_build(), fore="blue")+"] [SYSTEM: "+Welcome.get_os_type(),Welcome.get_os_ver()+"]")
+
+
 if REG_LOG_STATE == "0":
     print(color("Xshell has started in no REG logging mode",fore="yellow"))
     log.debug("Running in No Reg logging")
 if REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/HISTORY/HISTORY_ON.data") == "0":
     log.info("History is off")
     print(color("History is off use 'history -on' to enable it again",fore="yellow"))
-Welcome.get_welcome_message()
+from system.system64 import lang
+print(lang.get_welcome_message())
 #====SYSTEM IMPORT====
 from system.system64 import command
 from system.system64.syscore import history
