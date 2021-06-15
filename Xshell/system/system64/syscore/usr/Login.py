@@ -42,6 +42,8 @@ class Welcome:
         print("Wiki: https://github.com/awesomelewis2007/Xshell/wiki")
         print("Report Bugs: https://github.com/awesomelewis2007/Xshell/issues/new/choose")
         print("")
+        print("Version: "+Welcome.get_ver())#
+        print("Build: "+Welcome.get_build())
         print("Date: ",datetime.datetime.now())
         print("CPU: "+str(psutil.cpu_percent(interval=0.1))+"%")
         print("Local IP Address: "+socket.gethostbyname(socket.gethostname()))
