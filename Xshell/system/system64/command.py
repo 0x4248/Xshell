@@ -2,7 +2,6 @@ import logging
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/command.log')
 global log
 log = logging.getLogger(__name__)
-log.info("test")
 def run(command):
     if "cd " in command:
         ccommand = command[:2]
