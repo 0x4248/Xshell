@@ -13,6 +13,8 @@ def run(command):
             except FileNotFoundError:
                 from colr import color
                 print(color("[X] Directory not found 404", fore="red"))
+                error_msg = "CD "+command+" 404"
+                log.error(error_msg)
 
     if "dir" in command:
         ccommand = command[:3]
@@ -231,6 +233,8 @@ def run(command):
             except FileNotFoundError: 
                 from colr import color
                 print(color("[X] File not found 404", fore="red"))
+                error_msg = "GET "+command+" 404"
+                log.error(error_msg)
     if "$ " in command:
         ccommand = command[:1]
         if ccommand == "$":
@@ -259,10 +263,14 @@ def run(command):
                     pass
             except FileNotFoundError:
                 from colr import color
-                print(color("[X] Warn File not found 404", fore="red"))
+                print(color("[X] File not found 404", fore="red"))
+                error_msg = "GET "+command+" 404"
+                log.error(error_msg)
             except OSError:
                 from colr import color
                 print(color("[X] ERROR OS ERROR 105", fore="red"))
+                error_msg = "SYSTEM OS ERROR Command: "+command
+                log.error(error_msg)  
 
     if "rmdir " in command:
         from colr import color
@@ -282,10 +290,13 @@ def run(command):
             except FileNotFoundError:
                 from colr import color
                 print(color("[X] Warn directory not found 404", fore="red"))
+                error_msg = "DIR "+command+" 404"
+                log.error(error_msg)
             except OSError:
                 from colr import color
                 print(color("[X] ERROR OS ERROR 105", fore="red"))
-
+                error_msg = "SYSTEM OS ERROR Command: "+command
+                log.error(error_msg) 
 
     if "mkdir " in command:
         import os
@@ -299,10 +310,13 @@ def run(command):
             except FileExistsError:
                 from colr import color
                 print(color("[!] Warn Directory exists 409", fore="yellow"))
+                error_msg = "CREATE EXIST"+command+" 409"
+                log.error(error_msg) 
             except OSError:
                 from colr import color
                 print(color("[X] ERROR OS ERROR 105", fore="red"))
-
+                error_msg = "SYSTEM OS ERROR Command: "+command
+                log.error(error_msg) 
     if "makefile " in command:
         ccommand = command[:8]
         if ccommand == "makefile":
@@ -312,7 +326,9 @@ def run(command):
                 x.write("")
             except:
                 from colr import color
-                print(color("[X] Cant write to file 404", fore="red"))
+                print(color("[X] Cant write to file 405", fore="red"))
+                error_msg = "SYSTEM WRITE FAIL: "+command+" 405"
+                log.error(error_msg)
 
     if "locip" in command:
         ccommand = command[:5]
@@ -359,7 +375,7 @@ def run(command):
             history.clear()
             from colr import color
             print(color("Removed all history!", fore="green"))
-
+            log.info("HISTORY CLEARED")
     if "history -on" in command:
         ccommand = command[:11]
         if ccommand == "history -on":
@@ -367,7 +383,7 @@ def run(command):
             history.set_to("1")
             from colr import color
             print(color("History is now on", fore="green"))
-
+            
     if "history -off" in command:
         ccommand = command[:12]
         if ccommand == "history -off":
@@ -425,6 +441,8 @@ def run(command):
             except FileNotFoundError:
                 from colr import color
                 print(color("[X] File no found 404", fore="red"))
+                error_msg = "GET "+command+" 404"
+                log.error(error_msg)
                 return None
     if "tc" in command:
         ccommand = command[:2]
