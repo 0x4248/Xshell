@@ -1,5 +1,4 @@
 import os
-from re import IGNORECASE
 from system.system64.syscore import REGISTRY
 wd = os.getcwd()
 def read():  

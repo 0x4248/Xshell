@@ -1,5 +1,6 @@
 import logging
-from shutil import register_unpack_format
+import os
+START_DIR = os.getcwd()
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/command.log')
 global log
 log = logging.getLogger(__name__)
@@ -16,7 +17,7 @@ def run(command):
                 print(color("[X] Directory not found 404", fore="red"))
                 error_msg = "CD "+command+" 404"
                 log.error(error_msg)
-                return None
+            return None
 
     if "dir" in command:
         ccommand = command[:3]
@@ -522,13 +523,12 @@ def run(command):
     else:
         import difflib
         from colr import color
-        from system.system64.syscore import REGISTRY
-        f = open("system\REGISTRY\LOCAL_SYSTEM\SYSTEM\SYSTEM_COMMANDS\COMMANDS.data","r")
+
+        f = open(START_DIR+"/"+"system\REGISTRY\LOCAL_SYSTEM\SYSTEM\SYSTEM_COMMANDS\COMMANDS.data","r")
         x = f.readlines()
 
         out = difflib.get_close_matches(command,x)
         print(color("Command Not found: "+command, fore="red"))
-        print("Here are some similar commands")
         
         line= 1
         for i in out:
