@@ -123,7 +123,6 @@ log.info(msg="Imported module:requests")
 import socket
 log.info(msg="Imported module:socket")
 
-
 Boot.Host_info()
 
 #====History=====
