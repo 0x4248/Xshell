@@ -36,7 +36,7 @@ class Boot:
             from system.system64.syscore import REGISTRY
             x = platform.system()
             x = x.upper()
-            REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/system_os.data",x)
+            REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/OS.data",x)
             REGISTRY.write("system/temp/OS",x)
 
             x = platform.version()
@@ -89,12 +89,13 @@ import logging
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System_log.log')
 global log
 log = logging.getLogger('main')
-
+log.info("==============================BOOT==============================")
 
 
 #=====================MAIN======================
 from system.system64.syscore import REGISTRY
 from system.system64.syscore.usr import Login
+
 Login.Welcome.message()
 
 global LOG_STATE

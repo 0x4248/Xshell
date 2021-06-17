@@ -15,6 +15,7 @@ def run(command):
                 print(color("[X] Directory not found 404", fore="red"))
                 error_msg = "CD "+command+" 404"
                 log.error(error_msg)
+                return None
 
     if "dir" in command:
         ccommand = command[:3]
@@ -108,6 +109,7 @@ def run(command):
                     print("[FILE]─["+i+"]")
                 if os.path.isdir(full_dir) == True:
                     print("[DIR]──["+i+"]")
+            return None
 
     if "ls" in command:
         from colr import color
@@ -222,31 +224,36 @@ def run(command):
                     print(color(i,fore="white"))
                 if os.path.isdir(full_dir) == True:
                     print(color(i,fore="white"))
-
+            return None
     if "print " in command:
         ccommand = command[:5]
         if ccommand == "print":
             command = command.replace("print ","")
             try:
                 file = open(command,"r")
-                print(file.read())    
+                print(file.read()) 
+                return None   
             except FileNotFoundError: 
                 from colr import color
                 print(color("[X] File not found 404", fore="red"))
                 error_msg = "GET "+command+" 404"
                 log.error(error_msg)
+                return None
+        
+
     if "$ " in command:
         ccommand = command[:1]
         if ccommand == "$":
             command = command.replace("$","")
             import os
             os.system(command)
-
+        return None
     if "PATH" in command:
         ccommand = command[:4]
         if ccommand == "PATH":
             from system.system64.syscore import PATH
             PATH.main()
+        return None
 
     if "rm " in command:
         from colr import color
@@ -271,7 +278,7 @@ def run(command):
                 print(color("[X] ERROR OS ERROR 105", fore="red"))
                 error_msg = "SYSTEM OS ERROR Command: "+command
                 log.error(error_msg)  
-
+            return None
     if "rmdir " in command:
         from colr import color
         import os
@@ -297,7 +304,7 @@ def run(command):
                 print(color("[X] ERROR OS ERROR 105", fore="red"))
                 error_msg = "SYSTEM OS ERROR Command: "+command
                 log.error(error_msg) 
-
+            return None
     if "mkdir " in command:
         import os
         ccommand = command[:5]
@@ -317,6 +324,7 @@ def run(command):
                 print(color("[X] ERROR OS ERROR 105", fore="red"))
                 error_msg = "SYSTEM OS ERROR Command: "+command
                 log.error(error_msg) 
+            return None
     if "makefile " in command:
         ccommand = command[:8]
         if ccommand == "makefile":
@@ -329,20 +337,21 @@ def run(command):
                 print(color("[X] Cant write to file 405", fore="red"))
                 error_msg = "SYSTEM WRITE FAIL: "+command+" 405"
                 log.error(error_msg)
+            return None
 
     if "locip" in command:
         ccommand = command[:5]
         if ccommand == "locip":
             from system.system64.syscore import internet_protocol
             print(internet_protocol.get_local_ip())
-            
+            return None
 
     if "pubip" in command:
         ccommand = command[:5]
         if ccommand == "pubip":
             from system.system64.syscore import internet_protocol
             print(internet_protocol.get_public_ip())
-
+            return None
     if "python " in command:
         ccommand = command[:6]
         if ccommand == "python":
@@ -362,12 +371,14 @@ def run(command):
             if s == "WINDOWS":
                 x = "python "+command
                 os.system(x)
+            return None
     if "js " in command:
         ccommand = command[:2]
         if ccommand == "js":
             command = command.replace("js ","")
             from system.system64.syscore.jspy import jspy
             jspy.run_file(command)
+            return None
     if "history -c" in command:
         ccommand = command[:10]
         if ccommand == "history -c":
@@ -376,6 +387,7 @@ def run(command):
             from colr import color
             print(color("Removed all history!", fore="green"))
             log.info("HISTORY CLEARED")
+            return None
     if "history -on" in command:
         ccommand = command[:11]
         if ccommand == "history -on":
@@ -383,7 +395,8 @@ def run(command):
             history.set_to("1")
             from colr import color
             print(color("History is now on", fore="green"))
-            
+            return None
+
     if "history -off" in command:
         ccommand = command[:12]
         if ccommand == "history -off":
@@ -391,14 +404,14 @@ def run(command):
             history.set_to("0")
             from colr import color
             print(color("History is now off", fore="green"))
-
+            return None
     if "history" in command:
         ccommand = command[:7]
         if ccommand == "history":
             ccommand = command[7:10]
             from system.system64.syscore import history
             history.read()    
-
+            return None
     if "tree" in command:
         ccommand = command[:4]
         if "--colour-off" in command:
@@ -412,6 +425,7 @@ def run(command):
                     subindent = ' ' * 4 * (level + 1)
                     for f in files:
                         print('{}{}'.format(subindent, f))
+                return None
         if "--colour-off" not in command:
             if ccommand == "tree":
                 import os
@@ -424,10 +438,13 @@ def run(command):
                     subindent = ' ' * 4 * (level + 1)
                     for f in files:
                         print('{}{}'.format(subindent, f))
+            return None
+
     if "github" in command:
         from colr import color
         print("Source Code:", color("https://github.com/awesomelewis2007/Xshell", fore="blue"))
-    
+        return None
+
     if "lines" in command:
         ccommand = command[:5]
         if ccommand == "lines":
@@ -444,6 +461,7 @@ def run(command):
                 error_msg = "GET "+command+" 404"
                 log.error(error_msg)
                 return None
+            return None
     if "tc" in command:
         ccommand = command[:2]
         if ccommand == "tc":
@@ -465,3 +483,33 @@ def run(command):
                     print(color("[X] The File:"+path+" can not be removed due to a file not found error 404", fore="red"))
                 except FileExistsError:
                     print(color("[X] The File:"+path+" can not be removed due to file is already in the SYSTEM_TRASH folder 406", fore="red"))  
+            return None
+    if "wiki" in command:
+        if command.upper()[:4] == "WIKI":
+            from colr import color
+            print("Are you stuck or confused?")
+            print("Here is the wiki link: ",color("https://github.com/awesomelewis2007/Xshell/wiki", fore="blue"))
+            return None
+
+    if "bug" in command:
+        if command.upper()[:3] == "BUG":
+            from colr import color
+            print("What a bug...")
+            print("Here is the issue link:",color("https://github.com/awesomelewis2007/Xshell/issues/new/choose", fore="blue"))
+            return None
+    else:
+        import difflib
+        from colr import color
+        from system.system64.syscore import REGISTRY
+        f = open("system\REGISTRY\LOCAL_SYSTEM\SYSTEM\SYSTEM_COMMANDS\COMMANDS.data","r")
+        x = f.readlines()
+
+        out = difflib.get_close_matches(command,x)
+        print(color("Command Not found: "+command, fore="red"))
+        print("Here are some similar commands")
+        
+        line= 1
+        for i in out:
+            i = i.replace("\n", "")
+            print(color(line,fore="cyan")+color("> ",fore="blue")+i)
+            line = line + 1
