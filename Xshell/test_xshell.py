@@ -1,6 +1,6 @@
 def test_command_1():
     from system.system64 import command
-    command.run("dir")
+    command.run("makefile test.txt")
 def test_command_2():
     from system.system64 import command
     command.run("ls")
