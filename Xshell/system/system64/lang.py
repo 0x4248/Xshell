@@ -16,12 +16,6 @@ def get_build_ver():
     return z
 
 def get_welcome_message():
-    lang = get_lang()
-    if lang == "en-uk":
-        x = open("system/config/welcome/en-uk/welcome.lang","r")
-        z = x.read()
-        return z
-    if lang == "en-us":
-        x = open("system/config/welcome/en-us/welcome.lang","r")
-        z = x.read()
-        return z
+    x = open("system/config/welcome/welcome","r")
+    z = x.read()
+    return z

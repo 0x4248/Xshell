@@ -1,5 +1,5 @@
-class Welcome:
 
+class Welcome:
     def get_welcome_message():
         from system.system64 import lang
         return lang.get_welcome_message()
@@ -36,15 +36,18 @@ class Welcome:
         import datetime
         import socket
         import psutil
-        print("Welcome to Xshell "+Welcome.get_ver()+" ("+Welcome.get_os_type()+" "+Welcome.get_os_ver()+")")
+        from colr import color
+        print(color("Welcome to Xshell "+Welcome.get_ver()+" ("+Welcome.get_os_type()+" "+Welcome.get_os_ver()+")",fore="blue"))
         print()
-        print("Source Code: https://github.com/awesomelewis2007/Xshell")
-        print("Wiki: https://github.com/awesomelewis2007/Xshell/wiki")
-        print("Report Bugs: https://github.com/awesomelewis2007/Xshell/issues/new/choose")
+        print("Source Code: "+ color("https://github.com/awesomelewis2007/Xshell", fore="blue"))
+        print("Wiki: "+ color("https://github.com/awesomelewis2007/Xshell/wiki", fore="blue"))
+        print("Report Bugs: "+ color("https://github.com/awesomelewis2007/Xshell/issues/new/choose", fore="blue"))
         print("")
-        print("Version: "+Welcome.get_ver())#
-        print("Build: "+Welcome.get_build())
-        print("Date: ",datetime.datetime.now())
-        print("CPU: "+str(psutil.cpu_percent(interval=0.1))+"%")
-        print("Local IP Address: "+socket.gethostbyname(socket.gethostname()))
+        print(color("Version: ",fore="blue")+Welcome.get_ver())#
+        print(color("Build: ",fore="blue")+Welcome.get_build())
+        print(color("Date: ",fore="blue"),datetime.datetime.now())
+        cpu = psutil.cpu_percent(interval=0.1)
+        print(color("CPU: ",fore="blue")+str(cpu)+"%")
+            
+        print(color("Local IP Address: ",fore="blue")+socket.gethostbyname(socket.gethostname()))
         print("")

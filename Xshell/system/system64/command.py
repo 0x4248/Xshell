@@ -1,4 +1,5 @@
 import logging
+from shutil import register_unpack_format
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/command.log')
 global log
 log = logging.getLogger(__name__)
@@ -497,6 +498,27 @@ def run(command):
             print("What a bug...")
             print("Here is the issue link:",color("https://github.com/awesomelewis2007/Xshell/issues/new/choose", fore="blue"))
             return None
+    if "welcome" in command:
+        if command[:7] == "welcome":
+            from system.system64 import lang
+            from colr import color
+            wm = lang.get_welcome_message()
+            print("Your current welcome message is:")
+            print(color(wm, fore="blue"))
+            ask = input("Do you want to change it (Y) or (N)")
+            if ask.upper()[:1] == "Y":
+                print("what do you want to change your welcome message to?")
+                wm_change = input(color(">",fore="blue"))
+                if wm_change == "DONTCHANGE":
+                    return None
+                try:
+                    f = open("system/config/welcome/welcome","w")
+                    f.write(wm_change)
+                    f.close()
+                except:
+                    print(color("[X] Cant change welcome message", fore="red"))
+                return None
+                
     else:
         import difflib
         from colr import color
