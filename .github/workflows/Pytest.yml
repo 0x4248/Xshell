@@ -28,6 +28,7 @@ jobs:
         pip install js2py
         pip install pythonping
         pip install psutil
+        pip install msilib
     - name: Pytest
       run: |
         cd Xshell
