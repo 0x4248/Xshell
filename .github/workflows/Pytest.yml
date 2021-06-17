@@ -26,5 +26,5 @@ jobs:
         pip install pytest
     - name: Pytest
       run: |
-        cd Xshell/Xshell
-        pytest
+        cd Xshell
+        pytest test_xshell.py -v -s
