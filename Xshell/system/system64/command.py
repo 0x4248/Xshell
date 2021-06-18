@@ -523,7 +523,8 @@ def run(command):
     else:
         import difflib
         from colr import color
-
+        if command == "":
+            return None       
         f = open(START_DIR+"/"+"system\REGISTRY\LOCAL_SYSTEM\SYSTEM\SYSTEM_COMMANDS\COMMANDS.data","r")
         x = f.readlines()
 

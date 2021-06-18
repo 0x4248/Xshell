@@ -46,8 +46,5 @@ class Welcome:
         print(color("Version: ",fore="blue")+Welcome.get_ver())#
         print(color("Build: ",fore="blue")+Welcome.get_build())
         print(color("Date: ",fore="blue"),datetime.datetime.now())
-        cpu = psutil.cpu_percent(interval=0.1)
-        print(color("CPU: ",fore="blue")+str(cpu)+"%")
-            
+        print(color("CPU: ",fore="blue")+str(psutil.cpu_percent(interval=0.1))+"%")
         print(color("Local IP Address: ",fore="blue")+socket.gethostbyname(socket.gethostname()))
-        print("")

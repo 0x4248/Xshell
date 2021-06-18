@@ -1,5 +1,9 @@
 #! bin/python39
 #Xshell GNU public licence
+import os
+import sys
+import time
+BOOT_START = time.time()
 class Boot:
     def Fatal_cant_boot(errorno = "Unknown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes available"):
         print("[X] Fatal Xshell cant boot due to an error in the system")
@@ -31,20 +35,6 @@ class Boot:
                 log = log + "Printing error message and quitting"
                 a = "CHECK DISK: The system cant find the path '"+i+"'"
                 Boot.Fatal_cant_boot(errorno="404",reason=a,log=log,fix="Reinstall Xshell or relocate the missing path or file")
-    def Host_info():
-        if REG_LOG_STATE == "1":
-            from system.system64.syscore import REGISTRY
-            x = platform.system()
-            x = x.upper()
-            REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/OS.data",x)
-            REGISTRY.write("system/temp/OS",x)
-
-            x = platform.version()
-            REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data",x)
-            REGISTRY.write("system/temp/OS_NAME",x)
-        if REG_LOG_STATE == "0":
-            pass
-
 
     def path_add():
         import sys
@@ -88,29 +78,13 @@ Boot.check_modules()
 import logging
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System_log.log')
 global log
-log = logging.getLogger('main')
+log = logging.getLogger()
 log.info("==============================BOOT==============================")
 
 
 #=====================MAIN======================
 from system.system64.syscore import REGISTRY
 from system.system64.syscore.usr import Login
-
-Login.Welcome.message()
-
-global LOG_STATE
-log.info(msg="Reading registory log state")
-REG_LOG_STATE = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/OS_LOGGING_STATE/REG_LOGGING.data")
-
-Boot.path_add()
-Boot.check_filesystem()
-
-import os
-log.info(msg="Imported module:os")
-import sys
-log.info(msg="Imported module:sys")
-import time
-log.info(msg="Imported module:time")
 import js2py
 log.info(msg="Imported module:js2py")
 import datetime
@@ -124,8 +98,39 @@ log.info(msg="Imported module:requests")
 import socket
 log.info(msg="Imported module:socket")
 
-Boot.Host_info()
+Login.Welcome.message()
 
+global LOG_STATE
+log.info(msg="Reading registory log state")
+REG_LOG_STATE = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/OS_LOGGING_STATE/REG_LOGGING.data")
+x = platform.system()
+log.info("SYSTEM OS:    "+str(x))
+x = platform.version()
+log.info("SYSTEM VER:   "+str(x))
+x = platform.processor()
+log.info("CPU:          "+str(x))
+x = platform.python_build()
+log.info("PYTHON BUILD: "+str(x))
+if REG_LOG_STATE == "1":
+    from system.system64.syscore import REGISTRY
+    x = platform.system()
+    x = x.upper()
+    REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_OS/OS.data",x)
+    REGISTRY.write("system/temp/OS",x)
+    x = platform.version()
+    REGISTRY.write("system/REGISTRY/LOCAL_MACHINE/LOCAL_NAME/NAME.data",x)
+    REGISTRY.write("system/temp/OS_NAME",x)
+if REG_LOG_STATE == "0":
+    pass
+Boot.path_add()
+Boot.check_filesystem()
+
+BOOT_END = time.time()
+log.info("CODE: 100")
+boot_time = BOOT_END - BOOT_START
+round(boot_time, 3)
+print(color("Boot Time: ", fore="blue")+str(boot_time)+"Ms")
+print("")
 #====History=====
 Xshell_running = True
 try:
