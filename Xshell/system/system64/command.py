@@ -1,7 +1,7 @@
 import logging
 import os
 START_DIR = os.getcwd()
-logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/command.log')
+logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/System_log.log')
 global log
 log = logging.getLogger(__name__)
 def run(command):
@@ -29,9 +29,9 @@ def run(command):
             wd = os.getcwd()
             system_files = [".sys",".cab",".dll",".bin",".reg",".tmp",".temp"]
             executable_files = [".exe",".msi",".sh"]
-            lang_files = [".py",".pyc",".js",".jsm",".c",".h",".cs","cpp",".css",".html",".com",".bash",".bat",".java"]
-            images = [".png",".jpg",".jpeg",".ico"]
-            data = [".db",".data",".json",".dat"]
+            lang_files = [".py",".pyc",".js",".jsm",".c",".h",".hp",".hh",".hpp",".ru",".cs","cpp",".css",".html",".com",".bash",".bat",".java"]
+            images = [".png",".jpg",".jpeg",".ico",".webm",".svg",".bmp"]
+            data = [".db",".data",".json",".dat",".csv"]
             if "-c" in command:
                 from random import randint
                 if randint(1,1000) == 1:
@@ -428,7 +428,7 @@ def run(command):
                     for f in files:
                         print('{}{}'.format(subindent, f))
                 return None
-        if "--colour-off" not in command:
+        else:
             if ccommand == "tree":
                 import os
                 from colr import color
