@@ -28,7 +28,7 @@ def run(command):
             dir = os.listdir()
             wd = os.getcwd()
             system_files = [".sys",".cab",".dll",".bin",".reg",".tmp",".temp"]
-            executable_files = [".exe",".msi",".sh"]
+            executable_files = [".exe",".msi",".sh",".bin"]
             lang_files = [".py",".pyc",".js",".jsm",".c",".h",".hp",".hh",".hpp",".ru",".cs","cpp",".css",".html",".com",".bash",".bat",".java"]
             images = [".png",".jpg",".jpeg",".ico",".webm",".svg",".bmp"]
             data = [".db",".data",".json",".dat",".csv"]
