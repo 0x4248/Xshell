@@ -16,25 +16,6 @@ class Boot:
         print("--------------------------------------------------------")
         print("Fixes:",fix)
         exit()
-    def check_filesystem():
-        import os
-        from os import path
-        import sys
-        paths = ["system","system/system64","system/system64/syscore"]
-        log = "INFO: Executing sys checkdisk\n"
-        for i in paths:
-            log = log + "INFO: Checking path '"+i+"\n"
-            x = os.path.exists(i)
-            if x == True:
-                pass
-                log = log + "INFO: The path '"+i+"' was found and continuing to next path\n"
-                log = log + "\n"
-            if x == False:
-                log = log + "ERROR: Path not found '"+i+"\n"
-                log = log + "Xshell Will Not contine to boot"+"\n"
-                log = log + "Printing error message and quitting"
-                a = "CHECK DISK: The system cant find the path '"+i+"'"
-                Boot.Fatal_cant_boot(errorno="404",reason=a,log=log,fix="Reinstall Xshell or relocate the missing path or file")
 
     def path_add():
         import sys
@@ -122,8 +103,8 @@ if REG_LOG_STATE == "1":
     REGISTRY.write("system/temp/OS_NAME",x)
 if REG_LOG_STATE == "0":
     pass
+log.info("Running adding Xshell to PATH")
 Boot.path_add()
-Boot.check_filesystem()
 
 BOOT_END = time.time()
 log.info("CODE: 100")

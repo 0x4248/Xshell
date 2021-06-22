@@ -262,6 +262,25 @@ def run(command):
         import os
         ccommand = command[:2]
         if ccommand == "rm":
+            if "-force" in command:
+                command = command.replace("rm ","")  
+                command = command.replace(" -force","") 
+                command = command.replace("-force","") 
+                command = command.replace("-force ","") 
+                command = command.replace(" -force ","") 
+                try:
+                    os.remove(command)
+                except FileNotFoundError:
+                    from colr import color
+                    print(color("[X] File not found 404", fore="red"))
+                    error_msg = "GET "+command+" 404"
+                    log.error(error_msg)
+                except OSError:
+                    from colr import color
+                    print(color("[X] ERROR OS ERROR 105", fore="red"))
+                    error_msg = "SYSTEM OS ERROR Command: "+command
+                    log.error(error_msg)  
+                return None
             command = command.replace("rm ","")  
             try:
                 consent = input(color("[!] Are you sure you want to remove this file Y or N:", fore="yellow"))
@@ -475,6 +494,9 @@ def run(command):
             dir = os.listdir("system/temp")
             for i in dir:
                 path = "system/temp"+"/"+str(i)
+                print("Removing History")
+                from system.system64.syscore import history
+                history.clear()
                 print("Removing File:"+path)
                 try:
                     shutil.move(path,"system\SYSTEM_TRASH")
@@ -485,6 +507,8 @@ def run(command):
                     print(color("[X] The File:"+path+" can not be removed due to a file not found error 404", fore="red"))
                 except FileExistsError:
                     print(color("[X] The File:"+path+" can not be removed due to file is already in the SYSTEM_TRASH folder 406", fore="red"))  
+                except:
+                    print(color("[X] The File:"+path+" can not be removed due to an unknown error in the system", fore="red"))  
             return None
     if "wiki" in command:
         if command.upper()[:4] == "WIKI":

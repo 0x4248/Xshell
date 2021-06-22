@@ -1,4 +1,3 @@
-from msilib.schema import File
 import os
 import logging
 START_DIR = os.getcwd()
@@ -15,7 +14,7 @@ def read(dir):
     try:
         reg = open(regpath,"r")
         out = reg.read()
-        reg.close() #removes the file from the python39 memory for security 
+        reg.close()
         log.info("REGISTRY READ: "+dir)
         return out
     except FileNotFoundError:
@@ -31,7 +30,7 @@ def write(dir,data):
         regpath = START_DIR+"/"+dir
         reg = open(regpath,"w")
         reg.write(data)
-        reg.close() #removes the file from the python39 memory for security 
+        reg.close()
         log.info("REGISTRY WRITE: DIR:"+dir+" DATA:"+data)
     except FileNotFoundError:
         log.error("REGISTRY ERROR: Can't write registry result of 404 DIR:"+dir)
