@@ -461,10 +461,11 @@ def run(command):
                         print('{}{}'.format(subindent, f))
             return None
 
-    if "github" in command:
-        from colr import color
-        print("Source Code:", color("https://github.com/awesomelewis2007/Xshell", fore="blue"))
-        return None
+    if "sc" in command:
+        if command[:2] == "sc":
+            from colr import color
+            print("Source Code:", color("https://github.com/awesomelewis2007/Xshell", fore="blue"))
+            return None
 
     if "lines" in command:
         ccommand = command[:5]
