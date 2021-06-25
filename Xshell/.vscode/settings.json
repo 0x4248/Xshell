@@ -1,5 +1,5 @@
 { 
-    "cSpell.words": [ //use code spell checker for this setting
+    "cSpell.words": [
         "ccommand",
         "chdir",
         "color",
@@ -10,9 +10,11 @@
         "locip",
         "psutil",
         "pubip",
+        "Xshell",
+        "xshell",
         "syscore"
     ],
-    "python.analysis.logLevel": "Trace",
+    "python.analysis.logLevel": "Information",
     "python.languageServer": "Pylance",
     "files.exclude": {
         "**/.DS_Store": false,
