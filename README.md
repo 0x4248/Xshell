@@ -11,6 +11,6 @@
 Xshell is a simple python shell that runs in a local folder
 
 <img src=https://github.com/awesomelewis2007/Xshell/blob/main/document/screenshots/Screenshot_of_shell.png>
-
+#[Download Xshell](https://github.com/awesomelewis2007/Xshell/releases)
 
 # [Click here to go to the Wiki](https://github.com/awesomelewis2007/Xshell/wiki)
