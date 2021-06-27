@@ -35,4 +35,3 @@ def write(dir,data):
     except FileNotFoundError:
         log.error("REGISTRY ERROR: Can't write registry result of 404 DIR:"+dir)
         return "404"        
-    

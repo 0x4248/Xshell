@@ -1,0 +1,70 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+.title {
+    text-align: center;
+    animation: title 1s ease-in-out 1 forwards;
+}
+.main {
+    text-align: justify;
+}
+.card {
+    margin-top: 90px;
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    animation: divshadow 2s ease-in-out 1 forwards;
+}
+@keyframes divshadow {
+    0% {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+    }
+    50% {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.25);
+        opacity: 1;
+    }
+}
+
+@keyframes title {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+button {
+    background-color: white;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgb(73, 73, 73);
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

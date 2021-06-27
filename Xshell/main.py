@@ -4,6 +4,7 @@ import os
 import sys
 import time
 BOOT_START = time.time()
+START_DIR = os.getcwd()
 class Boot:
     def Fatal_cant_boot(errorno = "Unknown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes available"):
         print("[X] Fatal Xshell cant boot due to an error in the system")
@@ -66,6 +67,7 @@ log.info("==============================BOOT==============================")
 #=====================MAIN======================
 from system.system64.syscore import REGISTRY
 from system.system64.syscore.usr import Login
+REGISTRY.write("system/REGISTRY/LOCAL_SYSTEM/PATH/START_DIR/START_DIR.reg",START_DIR)
 import js2py
 log.info(msg="Imported module:js2py")
 import datetime

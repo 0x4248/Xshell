@@ -524,6 +524,10 @@ def run(command):
             print("What a bug...")
             print("Here is the issue link:",color("https://github.com/awesomelewis2007/Xshell/issues/new/choose", fore="blue"))
             return None
+    if "licence" in command:
+        if command.upper()[:7] == "LICENCE":
+            from system.system64.syscore.web.license import server
+            return None
     if "welcome" in command:
         if command[:7] == "welcome":
             from system.system64 import lang
