@@ -43,8 +43,8 @@ class Welcome:
         print("Wiki: "+ color("https://github.com/awesomelewis2007/Xshell/wiki", fore="blue"))
         print("Report Bugs: "+ color("https://github.com/awesomelewis2007/Xshell/issues/new/choose", fore="blue"))
         print("")
-        print(color("Version: ",fore="blue")+Welcome.get_ver())#
+        print(color("Version: ",fore="blue")+Welcome.get_ver())
         print(color("Build: ",fore="blue")+Welcome.get_build())
-        print(color("Date: ",fore="blue"),datetime.datetime.now())
+        print(color("Date And Time: ",fore="blue"),datetime.datetime.now())
         print(color("CPU: ",fore="blue")+str(psutil.cpu_percent(interval=0.1))+"%")
         print(color("Local IP Address: ",fore="blue")+socket.gethostbyname(socket.gethostname()))

@@ -527,10 +527,12 @@ def run(command):
     if "help" in command:
         if command.upper()[:4] == "HELP":
             from system.system64.syscore.web.help import help
+            help.main()
             return None
     if "licence" in command:
         if command.upper()[:7] == "LICENCE":
             from system.system64.syscore.web.license import server
+            server.main()
             return None
     if "welcome" in command:
         if command[:7] == "welcome":
@@ -543,7 +545,7 @@ def run(command):
             if ask.upper()[:1] == "Y":
                 print("what do you want to change your welcome message to?")
                 wm_change = input(color(">",fore="blue"))
-                if wm_change == "DONTCHANGE":
+                if wm_change == "cancel":
                     return None
                 try:
                     f = open("system/config/welcome/welcome","w")

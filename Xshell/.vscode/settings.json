@@ -1,5 +1,6 @@
 { 
     "cSpell.words": [
+        "Xshell",
         "ccommand",
         "chdir",
         "color",
@@ -10,9 +11,9 @@
         "locip",
         "psutil",
         "pubip",
-        "Xshell",
-        "xshell",
-        "syscore"
+        "syscore",
+        "webm",
+        "xshell"
     ],
     "python.analysis.logLevel": "Information",
     "python.languageServer": "Pylance",
