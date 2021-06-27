@@ -1,9 +1,9 @@
 #! bin/python39
 #Xshell GNU public licence
-import os
-import sys
 import time
 BOOT_START = time.time()
+import os
+import sys
 START_DIR = os.getcwd()
 class Boot:
     def Fatal_cant_boot(errorno = "Unknown error no",reason = "No reason was given",log = "No log file was found",fix = "No fixes available"):
