@@ -12,7 +12,8 @@
         "pubip",
         "Xshell",
         "xshell",
-        "syscore"
+        "syscore",
+        ".webm"
     ],
     "python.analysis.logLevel": "Information",
     "python.languageServer": "Pylance",
