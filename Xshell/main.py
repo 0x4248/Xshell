@@ -149,7 +149,7 @@ except:
     log.info(msg="Successfully read history")
 #====Welcome====
 if connected == False:
-    print(colr("Xshell is not connected to the internet Xshell may hang or some services may not work", fore="yellow"))
+    print(color("Xshell is not connected to the internet Xshell may hang or some services may not work", fore="yellow"))
 
 if REG_LOG_STATE == "0":
     print(color("Xshell has started in no REG logging mode",fore="yellow"))
