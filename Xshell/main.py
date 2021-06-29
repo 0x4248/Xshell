@@ -87,8 +87,8 @@ if IPaddress=="127.0.0.1":
     current_ver = "0"
     this_ver = "0"
 else:
+    connected = True
     try:
-        connected = True
         import urllib.request
         from system.system64.syscore import REGISTRY
         contents = urllib.request.urlopen("https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/Xshell/system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_VER/SYS_VER.data").read()
