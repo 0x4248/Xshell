@@ -80,17 +80,25 @@ import requests
 log.info(msg="Imported module:requests")
 import socket
 log.info(msg="Imported module:socket")
-try:
-    import urllib.request
-    from system.system64.syscore import REGISTRY
-    contents = urllib.request.urlopen("https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/Xshell/system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_VER/SYS_VER.data").read()
-    current_ver = contents.decode("utf-8")
-    this_ver = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_VER/SYS_VER.data")
-    current_ver =  current_ver[:6]
-    this_ver = this_ver[:6]
-except:
+
+IPaddress=socket.gethostbyname(socket.gethostname())
+if IPaddress=="127.0.0.1":
+    connected = False
     current_ver = "0"
     this_ver = "0"
+else:
+    try:
+        import urllib.request
+        from system.system64.syscore import REGISTRY
+        contents = urllib.request.urlopen("https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/Xshell/system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_VER/SYS_VER.data").read()
+        current_ver = contents.decode("utf-8")
+        this_ver = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_VER/SYS_VER.data")
+        current_ver =  current_ver[:6]
+        this_ver = this_ver[:6]
+    except:
+        current_ver = "0"
+        this_ver = "0"
+
 Login.Welcome.message()
 
 global LOG_STATE
@@ -139,7 +147,8 @@ except:
     history_file_read_x = history_file_read.read()
     log.info(msg="Successfully read history")
 #====Welcome====
-
+if connected == False:
+    print(colr("Xshell is not connected to the internet Xshell may hang or some services may not work", fore="yellow"))
 
 if REG_LOG_STATE == "0":
     print(color("Xshell has started in no REG logging mode",fore="yellow"))
