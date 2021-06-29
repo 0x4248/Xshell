@@ -1,6 +1,6 @@
 function httpGet(URL){
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", URL, false ); // false for synchronous request
+    xmlHttp.open( "GET", URL, false ); 
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
@@ -45,3 +45,29 @@ var style = `
     background: #555;
 }`
 document.getElementById("scroll").innerHTML = style
+
+var style = `
+@keyframes divshadow {
+    0% {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+    }
+    50% {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.25);
+        opacity: 1;
+    }
+}
+
+@keyframes title {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}`
+document.getElementById("animation").innerHTML = style

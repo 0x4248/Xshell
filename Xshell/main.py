@@ -83,6 +83,7 @@ log.info(msg="Imported module:socket")
 
 IPaddress=socket.gethostbyname(socket.gethostname())
 if IPaddress=="127.0.0.1":
+    log.warn("Xshell is offline")
     connected = False
     current_ver = "0"
     this_ver = "0"
@@ -97,6 +98,7 @@ else:
         current_ver =  current_ver[:6]
         this_ver = this_ver[:6]
     except:
+        log.error("Xshell Cant connect to https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/Xshell/system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYS_VER/SYS_VER.data")
         current_ver = "0"
         this_ver = "0"
 

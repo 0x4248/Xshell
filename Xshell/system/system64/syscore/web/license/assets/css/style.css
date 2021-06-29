@@ -18,29 +18,7 @@ html {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
     animation: divshadow 2s ease-in-out 1 forwards;
 }
-@keyframes divshadow {
-    0% {
-        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
-        opacity: 0;
-    }
-    50% {
-        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
-        opacity: 1;
-    }
-    100% {
-        box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.25);
-        opacity: 1;
-    }
-}
 
-@keyframes title {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-}
 button {
     background-color: white;
     border: none;
