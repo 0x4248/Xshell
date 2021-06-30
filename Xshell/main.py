@@ -67,6 +67,7 @@ log.info("==============================BOOT==============================")
 #=====================MAIN======================
 from system.system64.syscore import REGISTRY
 from system.system64.syscore.usr import Login
+from system.system64.boot import addon_helper
 REGISTRY.write("system/REGISTRY/LOCAL_SYSTEM/PATH/START_DIR/START_DIR.reg",START_DIR)
 import js2py
 log.info(msg="Imported module:js2py")
@@ -80,7 +81,7 @@ import requests
 log.info(msg="Imported module:requests")
 import socket
 log.info(msg="Imported module:socket")
-
+addon_helper.main()
 IPaddress=socket.gethostbyname(socket.gethostname())
 if IPaddress=="127.0.0.1":
     log.warn("Xshell is offline")

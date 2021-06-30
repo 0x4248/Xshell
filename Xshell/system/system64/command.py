@@ -1,3 +1,4 @@
+from dataclasses import replace
 import logging
 import os
 START_DIR = os.getcwd()
@@ -553,11 +554,19 @@ def run(command):
                     f.close()
                 except:
                     print(color("[X] Cant change welcome message", fore="red"))
-                return None
-                
+                return None     
     else:
         import difflib
-        from colr import color
+        from colr import color 
+        from system.system64 import addon
+        command_list = command.split()
+        trim = len(str(command_list[:1]).replace("[","").replace("]","").replace("'",""))
+        command_replace = command[:trim] + " "
+        app = command[:trim]
+        trimcommand = command.replace(command_replace,"")
+        x = addon.run_addon(name=app,command=trimcommand)
+        if x == True:
+            return None
         if command == "":
             return None       
         f = open(START_DIR+"/"+"system\REGISTRY\LOCAL_SYSTEM\SYSTEM\SYSTEM_COMMANDS\COMMANDS.data","r")
