@@ -1,5 +1,5 @@
 <h1>Welcome to the Xshell Source Code</h1>
-<img src=https://github.com/awesomelewis2007/Xshell/blob/main/Logos/Xshell_banner.png>
+<img src=https://github.com/awesomelewis2007/Xshell/blob/main/Images%20and%20Wiki/Logos/Xshell_banner.png>
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/awesomelewis2007/Xshell?label=Xshell)
 ![GitHub](https://img.shields.io/github/license/awesomelewis2007/Xshell?color=blue)
@@ -9,8 +9,6 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/awesomelewis2007/Xshell)
 
 Xshell is a simple python shell that runs in a local folder
-
-<img src=https://github.com/awesomelewis2007/Xshell/blob/main/document/screenshots/Screenshot_of_shell.png>
 
 ## [Download Xshell](https://github.com/awesomelewis2007/Xshell/releases)
 
