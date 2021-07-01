@@ -7,9 +7,9 @@ def run_addon(name , command):
     sys.path.append(START_DIR+"/system/system64/addons")
     x = os.listdir(START_DIR+"/system/system64/addons")
     for i in x:
-        if name in i:
-            if i.endswith(".py") == True:
-               i = i.replace(".py","")
+        if i.endswith(".py") == True:
+            i = i.replace(".py","")
+            if i == name:
                addon = __import__(i, globals(), locals(), [], 0)
                addon.main(command)
                sys.path.remove(START_DIR+"/system/system64/addons")
