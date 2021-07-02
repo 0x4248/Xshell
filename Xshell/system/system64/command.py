@@ -1,6 +1,7 @@
 from dataclasses import replace
 import logging
 import os
+from xml.dom import NotFoundErr
 START_DIR = os.getcwd()
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/System_log.log')
 global log
@@ -231,19 +232,9 @@ def run(command):
     if "print " in command:
         ccommand = command[:5]
         if ccommand == "print":
-            command = command.replace("print ","")
-            try:
-                file = open(command,"r")
-                print(file.read()) 
-                return None   
-            except FileNotFoundError: 
-                from colr import color
-                print(color("[X] File not found 404", fore="red"))
-                error_msg = "GET "+command+" 404"
-                log.error(error_msg)
-                return None
-        
-
+            from system.system64.syscom import print as file_print
+            file_print.main(command=command)
+            return None
     if "$ " in command:
         ccommand = command[:1]
         if ccommand == "$":
@@ -377,22 +368,8 @@ def run(command):
     if "python " in command:
         ccommand = command[:6]
         if ccommand == "python":
-            command = command.replace("python ","")
-            import platform
-            import os
-            s = platform.system()
-            s = s.upper()
-            if s == "LINUX":
-                x = "python3 "+command
-                os.system(x)
-
-            if s == "MACOS":
-                x = "python3 "+command
-                os.system(x)
-            
-            if s == "WINDOWS":
-                x = "python "+command
-                os.system(x)
+            from system.system64.syscom import py_run
+            py_run.main(command=command)
             return None
     if "js " in command:
         ccommand = command[:2]
@@ -555,6 +532,26 @@ def run(command):
                 except:
                     print(color("[X] Cant change welcome message", fore="red"))
                 return None     
+    if "addon_list" in command:
+        if command[:10] == "addon_list":
+            if "-v" or "-verbose" in command:
+                from system.system64.syscore import REGISTRY
+                list = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/ADDONS/INDEX.reg")
+                length = len(list)
+                list = list[1:length]
+                no = 1
+                for i in list.splitlines():
+                    print(str(no)+"|"+i)
+                    no = no + 1
+                return None
+            from system.system64.syscore import REGISTRY
+            list = REGISTRY.read("system/REGISTRY/LOCAL_SYSTEM/SYSTEM/ADDONS/INDEX.reg")
+            list = list.replace(".py","")
+            length = len(list)
+            print(list[1:length])
+            return None
+            
+
     else:
         import difflib
         from colr import color 
@@ -569,7 +566,7 @@ def run(command):
             return None
         if command == "":
             return None       
-        f = open(START_DIR+"/"+"system\REGISTRY\LOCAL_SYSTEM\SYSTEM\SYSTEM_COMMANDS\COMMANDS.data","r")
+        f = open(START_DIR+"/"+"system/REGISTRY/LOCAL_SYSTEM/SYSTEM/SYSTEM_COMMANDS/COMMANDS.data","r")
         x = f.readlines()
 
         out = difflib.get_close_matches(command,x)
