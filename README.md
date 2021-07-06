@@ -12,7 +12,7 @@ Xshell is a simple python shell that runs in a local folder
 
 You will need to install python and nodejs
 
-After you install python and nodejs run the installer from Xshell_ionstaller folder
+After you install python and nodejs run the installer from Xshell_installer folder
 
 ## [Download Xshell](https://github.com/awesomelewis2007/Xshell/releases)
 
