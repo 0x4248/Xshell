@@ -16,9 +16,9 @@ var doc = `<section id="top"></section>
     <a href="#top"><button>To top of page</button></a>
 </div>
 <div class="card" style="margin-top: 20px;">
-    <a href="https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/LICENSE" style="margin-left: 10px;">Raw Text</a>
-    <a href="https://github.com/awesomelewis2007/Xshell/blob/main/LICENSE" style="margin-left: 10px;">Source Of Licence</a>
-    <a href="https://github.com/awesomelewis2007/Xshell" style="margin-left: 10px;">Xshell Homepage</a>
+    <a href="https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/LICENSE"">Raw Text</a>
+    <a href="https://github.com/awesomelewis2007/Xshell/blob/main/LICENSE">Source Of Licence</a>
+    <a href="https://github.com/awesomelewis2007/Xshell">Xshell Homepage</a>
 </div>`
 document.getElementById("root").innerHTML = doc
 var x = httpGet("https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/LICENSE")
@@ -71,3 +71,12 @@ var style = `
     }
 }`
 document.getElementById("animation").innerHTML = style
+
+var style = `
+a{
+    margin-left: 10px;
+    color:blue;
+    text-align: center;
+}
+`
+document.getElementById("links").innerHTML = style
