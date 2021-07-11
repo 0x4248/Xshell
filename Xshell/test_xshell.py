@@ -1,6 +1,6 @@
 def test_command_1():
     from system.system64 import command
-    command.run("makefile test.txt")
+    command.run("mk test.txt")
 def test_command_2():
     from system.system64 import command
     command.run("ls")
@@ -16,3 +16,6 @@ def test_command_5():
 def test_language_1():
     from system.system64 import lang
     lang.get_lang()
+def test_language_2():
+    from system.system64 import lang
+    lang.get_welcome_message()
