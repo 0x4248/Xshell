@@ -1,7 +1,5 @@
-from dataclasses import replace
 import logging
 import os
-from xml.dom import NotFoundErr
 START_DIR = os.getcwd()
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System/System_log.log')
 global log
@@ -214,7 +212,7 @@ def run(command):
                 print("-f   --files       only prints files")
                 print("-h   --help        prints this help message")
                 return None
-            if "--help" in command:
+            if "-h" in command:
                 print("Usage of ls command")
                 print("ls [-command]")
                 print("-c   --colour      prints files with colouring")
@@ -256,10 +254,10 @@ def run(command):
         if ccommand == "rm":
             if "-force" in command:
                 command = command.replace("rm ","")  
+                command = command.replace(" -force ","") 
+                command = command.replace("-force ","") 
                 command = command.replace(" -force","") 
                 command = command.replace("-force","") 
-                command = command.replace("-force ","") 
-                command = command.replace(" -force ","") 
                 try:
                     os.remove(command)
                 except FileNotFoundError:
@@ -275,7 +273,7 @@ def run(command):
                 return None
             command = command.replace("rm ","")  
             try:
-                consent = input(color("[!] Are you sure you want to remove this file Y or N:", fore="yellow"))
+                consent = input(color("[!] Warning the file '"+command+"' Will be removed permanently! \n Are you sure you want to remove this item Y or N:", fore="yellow"))
                 consent = consent.capitalize()
                 if consent == "Y":
                     os.remove(command)
@@ -299,7 +297,7 @@ def run(command):
         if ccommand == "rmdir":
             command = command.replace("rmdir ","")  
             try:
-                consent = input(color("[!] Are you sure you want to remove this directory Y or N:", fore="yellow"))
+                consent = input(color("[!] Warning the directory '"+command+"' Will be removed permanently! \n Are you sure you want to remove this item Y or N:", fore="yellow"))
                 consent = consent.capitalize()
                 if consent == "Y":
                     x = os.getcwd()
@@ -338,10 +336,10 @@ def run(command):
                 error_msg = "SYSTEM OS ERROR Command: "+command
                 log.error(error_msg) 
             return None
-    if "makefile " in command:
-        ccommand = command[:8]
-        if ccommand == "makefile":
-            command = command.replace("makefile ","")
+    if "mk " in command:
+        ccommand = command[:2]
+        if ccommand == "mk":
+            command = command.replace("mk ","")
             try:
                 x = open(command,"w")
                 x.write("")
@@ -454,7 +452,7 @@ def run(command):
                 with open(command) as f:
                     for _ in f:
                         count += 1
-                        print(count)
+                    print(count)
             except FileNotFoundError:
                 from colr import color
                 print(color("[X] File no found 404", fore="red"))
@@ -504,6 +502,10 @@ def run(command):
             return None
     if "help" in command:
         if command.upper()[:4] == "HELP":
+            if "-l" in command:
+                from system.system64.syscore.web.help import help
+                help.list()
+                return None                
             from system.system64.syscore.web.help import help
             help.main()
             return None

@@ -1,5 +1,9 @@
 #! bin/python39
 #Xshell GNU public licence
+#All changes that go public must be committed here
+#https://github.com/awesomelewis2007/Xshell
+#Putting our products and services on another site or public server 
+#without out permmition can result in a punishment
 import time
 BOOT_START = time.time()
 import os
@@ -201,6 +205,26 @@ while Xshell_running == True:
     if "quit" in user_input:
         trim_user_input = user_input[:4]
         if trim_user_input == "quit":
+            log.info("Killing System")
+            exit()
+    if "Exit" in user_input:
+        trim_user_input = user_input[:4]
+        if trim_user_input == "Exit":
+            log.info("Killing System")
+            exit()
+    if "Quit" in user_input:
+        trim_user_input = user_input[:4]
+        if trim_user_input == "Quit":
+            log.info("Killing System")
+            exit()
+    if "EXIT" in user_input:
+        trim_user_input = user_input[:4]
+        if trim_user_input == "EXIT":
+            log.info("Killing System")
+            exit()
+    if "QUIT" in user_input:
+        trim_user_input = user_input[:4]
+        if trim_user_input == "EXIT":
             log.info("Killing System")
             exit()
     command.run(user_input)
