@@ -1,6 +1,7 @@
 { 
     "cSpell.words": [
         "Xshell",
+        "Xshell's",
         "ccommand",
         "chdir",
         "color",
@@ -11,6 +12,7 @@
         "locip",
         "psutil",
         "pubip",
+        "syscom",
         "syscore",
         "webm",
         "xshell"
