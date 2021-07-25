@@ -1,8 +1,5 @@
 echo "Welcome to the Xshell installer"
-pip install colr
-pip install js2py
-pip install pythonping
-pip install psutil
+python3 -m pip install --upgrade pip
 pip3 install colr
 pip3 install js2py
 pip3 install pythonping
