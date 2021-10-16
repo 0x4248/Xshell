@@ -1,9 +1,11 @@
 import logging
 import os
 START_DIR = os.getcwd()
+
 logging.basicConfig(format='[%(asctime)s]  [%(filename)s:%(lineno)d] [ %(levelname)s ]  %(message)s',datefmt='%d-%m-%Y:%H:%M:%S',level=logging.DEBUG,filename='system/temp/logs/System_log.log')
 global log
 log = logging.getLogger(__name__)
+
 def run(command):
     if "cd " in command:
         ccommand = command[:2]
@@ -21,7 +23,6 @@ def run(command):
 
     if "dir" in command:
         ccommand = command[:3]
-
         if ccommand == "dir":
             import os
             from colr import color
@@ -62,6 +63,7 @@ def run(command):
                     if os.path.isdir(full_dir) == True:
                         print("/"+i)
                 return None
+
             if "--colour" in command:
                 from random import randint
                 if randint(1,1000) == 1:
@@ -233,6 +235,7 @@ def run(command):
             from system.system64.syscom import print as file_print
             file_print.main(command=command)
             return None
+            
     if "$ " in command:
         ccommand = command[:1]
         if ccommand == "$":
@@ -240,6 +243,7 @@ def run(command):
             import os
             os.system(command)
         return None
+
     if "PATH" in command:
         ccommand = command[:4]
         if ccommand == "PATH":
