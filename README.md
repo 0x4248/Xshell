@@ -14,6 +14,9 @@ You will need to install python
 
 After you install python run the installer from Xshell_installer folder
 
+## Privacy
+![](https://raw.githubusercontent.com/awesomelewis2007/Xshell/main/Images%20and%20Wiki/Privacy.png)
+
 ## [Download Xshell](https://github.com/awesomelewis2007/Xshell/releases)
 
 ## [Click here to go to the Wiki](https://github.com/awesomelewis2007/Xshell/wiki)
