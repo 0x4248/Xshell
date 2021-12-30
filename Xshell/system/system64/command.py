@@ -30,7 +30,7 @@ def run(command):
             wd = os.getcwd()
             system_files = [".sys",".cab",".dll",".bin",".reg",".tmp",".temp"]
             executable_files = [".exe",".msi",".sh",".bin"]
-            lang_files = [".py",".pyc",".js",".jsm",".c",".h",".hp",".hh",".hpp",".ru",".cs","cpp",".css",".html",".com",".bash",".bat",".java"]
+            lang_files = [".py",".pyc",".js",".jsm",".c",".h",".hp",".hh",".hpp",".ru",".cs","cpp",".css",".html",".com",".bash",".bat",".java",".cst"]
             images = [".png",".jpg",".jpeg",".ico",".webm",".svg",".bmp"]
             data = [".db",".data",".json",".dat",".csv"]
             if "-c" in command:
